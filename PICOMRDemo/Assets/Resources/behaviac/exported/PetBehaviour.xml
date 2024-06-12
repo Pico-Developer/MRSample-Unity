@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--EXPORTED BY TOOL, DON'T MODIFY IT!-->
+<!--Source File: PetBehaviour.xml-->
+<behavior name="PetBehaviour" agenttype="PicoMRDemo::Runtime::Pet::PetAgent" version="5">
+  <node class="Selector" id="0">
+    <node class="IfElse" id="25">
+      <node class="Condition" id="26">
+        <property Operator="Equal" />
+        <property Opl="Self.PicoMRDemo::Runtime::Pet::PetAgent::IsVirtualWorld()" />
+        <property Opr="const bool true" />
+      </node>
+      <node class="IfElse" id="31">
+        <node class="Condition" id="32">
+          <property Operator="Equal" />
+          <property Opl="Self.PicoMRDemo::Runtime::Pet::PetAgent::HasInVirtualWorld()" />
+          <property Opr="const bool true" />
+        </node>
+        <node class="IfElse" id="27">
+          <node class="Condition" id="29">
+            <property Operator="Equal" />
+            <property Opl="Self.PicoMRDemo::Runtime::Pet::PetAgent::IsWalkFinish()" />
+            <property Opr="const bool true" />
+          </node>
+          <node class="SelectorProbability" id="30">
+            <property RandomGenerator="Self.PicoMRDemo::Runtime::Pet::PetAgent::GetRandomValue()" />
+            <node class="DecoratorWeight" id="33">
+              <property DecorateWhenChildEnds="false" />
+              <property Weight="const int 80" />
+              <node class="Action" id="34">
+                <property Method="Self.PicoMRDemo::Runtime::Pet::PetAgent::Patrol()" />
+                <property ResultOption="BT_SUCCESS" />
+              </node>
+            </node>
+            <node class="DecoratorWeight" id="35">
+              <property DecorateWhenChildEnds="false" />
+              <property Weight="const int 20" />
+              <node class="Action" id="36">
+                <property Method="Self.PicoMRDemo::Runtime::Pet::PetAgent::PlayIdle()" />
+                <property ResultOption="BT_SUCCESS" />
+              </node>
+            </node>
+          </node>
+          <node class="True" id="37" />
+        </node>
+        <node class="IfElse" id="38">
+          <node class="Condition" id="39">
+            <property Operator="Equal" />
+            <property Opl="Self.PicoMRDemo::Runtime::Pet::PetAgent::IsWalkFinish()" />
+            <property Opr="const bool true" />
+          </node>
+          <node class="Action" id="42">
+            <property Method="Self.PicoMRDemo::Runtime::Pet::PetAgent::WalkToVirtualWorld()" />
+            <property ResultOption="BT_SUCCESS" />
+          </node>
+          <node class="True" id="45" />
+        </node>
+      </node>
+      <node class="False" id="28" />
+    </node>
+    <node class="IfElse" id="40">
+      <node class="Condition" id="41">
+        <property Operator="Equal" />
+        <property Opl="Self.PicoMRDemo::Runtime::Pet::PetAgent::HasInVirtualWorld()" />
+        <property Opr="const bool true" />
+      </node>
+      <node class="IfElse" id="43">
+        <node class="Condition" id="44">
+          <property Operator="Equal" />
+          <property Opl="Self.PicoMRDemo::Runtime::Pet::PetAgent::IsWalkFinish()" />
+          <property Opr="const bool true" />
+        </node>
+        <node class="Action" id="46">
+          <property Method="Self.PicoMRDemo::Runtime::Pet::PetAgent::WalkToRealWorld()" />
+          <property ResultOption="BT_SUCCESS" />
+        </node>
+        <node class="True" id="47" />
+      </node>
+      <node class="False" id="48" />
+    </node>
+    <node class="IfElse" id="1">
+      <node class="Condition" id="4">
+        <property Operator="Equal" />
+        <property Opl="Self.PicoMRDemo::Runtime::Pet::PetAgent::CheckCatchBall()" />
+        <property Opr="const bool true" />
+      </node>
+      <node class="IfElse" id="5">
+        <node class="Condition" id="6">
+          <property Operator="Equal" />
+          <property Opl="Self.PicoMRDemo::Runtime::Pet::PetAgent::IsCatchingBall()" />
+          <property Opr="const bool true" />
+        </node>
+        <node class="True" id="7" />
+        <node class="Action" id="8">
+          <property Method="Self.PicoMRDemo::Runtime::Pet::PetAgent::PlayCatchBall()" />
+          <property ResultOption="BT_SUCCESS" />
+        </node>
+      </node>
+      <node class="False" id="11" />
+    </node>
+    <node class="IfElse" id="2">
+      <node class="Condition" id="9">
+        <property Operator="Equal" />
+        <property Opl="Self.PicoMRDemo::Runtime::Pet::PetAgent::IsTouch()" />
+        <property Opr="const bool true" />
+      </node>
+      <node class="IfElse" id="10">
+        <node class="Condition" id="13">
+          <property Operator="Equal" />
+          <property Opl="Self.PicoMRDemo::Runtime::Pet::PetAgent::IsRua()" />
+          <property Opr="const bool true" />
+        </node>
+        <node class="True" id="14" />
+        <node class="Action" id="15">
+          <property Method="Self.PicoMRDemo::Runtime::Pet::PetAgent::PlayRua()" />
+          <property ResultOption="BT_SUCCESS" />
+        </node>
+      </node>
+      <node class="False" id="12" />
+    </node>
+    <node class="IfElse" id="3">
+      <node class="Condition" id="16">
+        <property Operator="Equal" />
+        <property Opl="Self.PicoMRDemo::Runtime::Pet::PetAgent::IsWalkFinish()" />
+        <property Opr="const bool true" />
+      </node>
+      <node class="SelectorProbability" id="20">
+        <property RandomGenerator="Self.PicoMRDemo::Runtime::Pet::PetAgent::GetRandomValue()" />
+        <node class="DecoratorWeight" id="19">
+          <property DecorateWhenChildEnds="false" />
+          <property Weight="const int 30" />
+          <node class="Action" id="17">
+            <property Method="Self.PicoMRDemo::Runtime::Pet::PetAgent::PlayWalk()" />
+            <property ResultOption="BT_SUCCESS" />
+          </node>
+        </node>
+        <node class="DecoratorWeight" id="21">
+          <property DecorateWhenChildEnds="false" />
+          <property Weight="const int 20" />
+          <node class="Action" id="22">
+            <property Method="Self.PicoMRDemo::Runtime::Pet::PetAgent::Patrol()" />
+            <property ResultOption="BT_SUCCESS" />
+          </node>
+        </node>
+        <node class="DecoratorWeight" id="23">
+          <property DecorateWhenChildEnds="false" />
+          <property Weight="const int 50" />
+          <node class="Action" id="24">
+            <property Method="Self.PicoMRDemo::Runtime::Pet::PetAgent::PlayIdle()" />
+            <property ResultOption="BT_SUCCESS" />
+          </node>
+        </node>
+      </node>
+      <node class="True" id="18" />
+    </node>
+  </node>
+</behavior>

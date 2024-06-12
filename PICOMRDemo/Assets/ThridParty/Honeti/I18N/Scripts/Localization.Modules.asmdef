@@ -1,0 +1,7 @@
+{
+	"name": "Localization.Modules",
+	"rootNamespace": "Honeti",
+	"references": [
+		"Unity.TextMeshPro"
+	]
+}

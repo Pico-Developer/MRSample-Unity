@@ -1,0 +1,1 @@
+Shader "Lines/Colored Blended with DepthTest" {SubShader { Pass {	BindChannels { Bind "Color",color }	Blend SrcAlpha OneMinusSrcAlpha	ZWrite On Cull Back ZTest LEqual Fog { Mode Off }} } }

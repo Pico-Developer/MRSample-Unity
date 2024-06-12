@@ -1,0 +1,17 @@
+{
+    "name": "PicoMRDemo.Editor",
+    "rootNamespace": "PicoMRDemo.Editor",
+    "references": [
+        "PicoMRDemo.Runtime"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "autoReferenced": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
