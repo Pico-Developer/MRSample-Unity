@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: bytedance
-  productName: PicoMRDemo
+  productName: PICOMRSampleMRTK
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -135,12 +135,7 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleVersion: 0.1
-  preloadedAssets:
-  - {fileID: 11400000, guid: b1f7c156b37769f49b60a5581a36bec6, type: 2}
-  - {fileID: 11400000, guid: 586db4213751f4641a8ef3b86fcb4f0d, type: 2}
-  - {fileID: 11400000, guid: c677e5c4eb85b7849a8da406775c299d, type: 2}
-  - {fileID: 8334073575401877218, guid: 2228331c55eb348cbad24ca8ae26d315, type: 2}
-  - {fileID: -8357600630618681334, guid: 5e792fa0bee97a44dbf6509a61043ae7, type: 2}
+  preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -160,8 +155,8 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.bytedance.PicoMRDemo
-    Standalone: com.bytedance.PicoMRDemo
+    Android: com.bytedance.PICOMRSampleMRTK
+    Standalone: com.bytedance.PicoMRDemoMRTK
   buildNumber:
     Standalone: 0
     iPhone: 0
