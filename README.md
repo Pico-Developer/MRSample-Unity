@@ -11,7 +11,7 @@ English | [中文README](./README.zh_CN.md)
 
 ## About the sample
 
-This sample demonstrates the MR features (SensePack) of the PICO Unity Integration SDK and their use-cases. In addition, for developers who prefer using the MRTK framework, this sample shows how to integrate MRTK to build MR applications.
+This sample showcases the mixed reality (MR) capabilities provided by the PICO Unity Integration SDK, including video passthrough, spatial calibration, and more. Users can try example use-cases such as room decoration, wall graffiti, and mini-game shooting. Additionally, for developers who prefer the MRTK framework, this sample provides a demonstration of how to integrate MRTK to build MR applications.
 
 ## Learn more
 
