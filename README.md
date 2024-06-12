@@ -1,4 +1,4 @@
-# Pico MR Demo
+# PICO MR Sample
 English | [中文README](./README.zh_CN.md)
 
 ## Development environment
@@ -9,7 +9,7 @@ English | [中文README](./README.zh_CN.md)
 - Graphics API: Vulkan
 - App structure: 64-bit
 
-## Use the demo
+## Use the sample
 
 This is a project to demonstrate the functionality of Pico MR
 
