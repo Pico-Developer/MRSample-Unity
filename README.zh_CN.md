@@ -16,7 +16,7 @@
 
 ## 了解更多
 
-有关演示的更多信息，请参阅[这篇文章](https://developer.picoxr-cn.com/document/unity/mixed-reality-mrtk-sample/)。
+有关演示的更多信息，请参阅[这篇文章](https://developer-cn.picoxr.com/document/unity/mixed-reality-mrtk-sample/)。
 
 ## LICENSE
 
