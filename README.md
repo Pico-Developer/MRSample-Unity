@@ -15,7 +15,7 @@ This sample showcases the mixed reality (MR) capabilities provided by the PICO U
 
 ## Learn more
 
-For more information about the sample, refer to [this article]().
+For more information about the sample, refer to [this article](https://developer.picoxr.com/document/unity/mixed-reality-mrtk-sample/).
 
 ## LICENSE
 This project is licensed under the [MIT License](./License.md).
