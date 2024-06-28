@@ -1,6 +1,10 @@
 # PICO MR Sample MRTK
 English | [中文README](./README.zh_CN.md)
 
+![Model](https://github.com/Pico-Developer/MRSample-Unity-MRTK/blob/main/mr-balloon-shot-cut.png)
+
+This sample showcases the mixed reality (MR) capabilities provided by the PICO Unity Integration SDK, including video passthrough, spatial calibration, and more. Users can try example use-cases such as room decoration, wall graffiti, and mini-game shooting. Additionally, for developers who prefer the MRTK framework, this sample provides a demonstration of how to integrate MRTK to build MR applications.
+
 ## Development environment
 
 - SDK version: 2.3.4
@@ -8,10 +12,6 @@ English | [中文README](./README.zh_CN.md)
 - Unity version: 2021.3.28f1
 - Graphics API: Vulkan
 - App structure: 64-bit
-
-## About the sample
-
-This sample showcases the mixed reality (MR) capabilities provided by the PICO Unity Integration SDK, including video passthrough, spatial calibration, and more. Users can try example use-cases such as room decoration, wall graffiti, and mini-game shooting. Additionally, for developers who prefer the MRTK framework, this sample provides a demonstration of how to integrate MRTK to build MR applications.
 
 ## Learn more
 
