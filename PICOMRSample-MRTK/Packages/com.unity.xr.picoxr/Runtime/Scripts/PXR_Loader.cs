@@ -103,7 +103,12 @@ namespace Unity.XR.PXR
                     enableAppSpaceWarp = Convert.ToUInt16(settings.enableAppSpaceWarp),                    
                     enableSubsampled = Convert.ToUInt16(PXR_ProjectSetting.GetProjectConfig().enableSubsampled),
                     lateLatchingDebug = Convert.ToUInt16(PXR_ProjectSetting.GetProjectConfig().latelatchingDebug),
-                    enableStageMode = Convert.ToUInt16(PXR_ProjectSetting.GetProjectConfig().stageMode)
+                    enableStageMode = Convert.ToUInt16(PXR_ProjectSetting.GetProjectConfig().stageMode),
+                    enableSuperResolution = Convert.ToUInt16(PXR_ProjectSetting.GetProjectConfig().superResolution),
+                    normalSharpening = Convert.ToUInt16(PXR_ProjectSetting.GetProjectConfig().normalSharpening),
+                    qualitySharpening = Convert.ToUInt16(PXR_ProjectSetting.GetProjectConfig().qualitySharpening),
+                    fixedFoveatedSharpening = Convert.ToUInt16(PXR_ProjectSetting.GetProjectConfig().fixedFoveatedSharpening),
+                    selfAdaptiveSharpening = Convert.ToUInt16(PXR_ProjectSetting.GetProjectConfig().selfAdaptiveSharpening)
                 };
 
                 PXR_Plugin.System.UPxr_Construct(ConvertRotationWith2Vector);

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Unity.XR.PXR
+namespace Unity.XR.PICO.TOBSupport
 {
     public class PXR_EnterpriseTools : MonoBehaviour
     {
@@ -15,6 +15,10 @@ namespace Unity.XR.PXR
         List<NoDelayedQueueItem> _currentActions = new List<NoDelayedQueueItem>();
         private static PXR_EnterpriseTools instance;
 
+        public void StartUp()
+        {
+            Debug.Log("ToBService PXR_EnterpriseTools StartUp");
+        }
         public static PXR_EnterpriseTools Instance
         {
             get
@@ -34,24 +38,13 @@ namespace Unity.XR.PXR
                 return instance;
             }
         }
-        private void Awake()
-        {
-            instance = this;
-        }
+      
 
-        public void QueueOnMainThread(Action taction)
+        public static  void QueueOnMainThread(Action taction)
         {
             lock (instance._actions)
             {
                 instance._actions.Add(new NoDelayedQueueItem { action = taction });
-            }
-        }
-
-        void OnDisable()
-        {
-            if (instance == this)
-            {
-                instance = null;
             }
         }
 
@@ -68,7 +61,7 @@ namespace Unity.XR.PXR
 
                 for (int i = 0; i < _currentActions.Count; i++)
                 {
-                    _currentActions[i].action();
+                    _currentActions[i].action.Invoke();
                 }
             }
         }

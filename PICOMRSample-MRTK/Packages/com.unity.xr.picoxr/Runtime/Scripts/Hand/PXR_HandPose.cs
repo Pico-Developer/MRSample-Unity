@@ -47,13 +47,13 @@ namespace Unity.XR.PXR
             switch (trackType)
             {
                 case TrackType.Any:
-                    poseStateActive = (leftShapesActive | rightShapesActive) & (leftBonesActive | rightBonesActive) & (leftTransActive | rightTransActive);
+                    poseStateActive = (leftShapesActive && leftBonesActive && leftTransActive) || (rightShapesActive && rightBonesActive && rightTransActive);
                     break;
                 case TrackType.Left:
-                    poseStateActive = leftShapesActive & leftBonesActive & leftTransActive;
+                    poseStateActive = leftShapesActive && leftBonesActive && leftTransActive;
                     break;
                 case TrackType.Right:
-                    poseStateActive = rightShapesActive & rightBonesActive & rightTransActive;
+                    poseStateActive = rightShapesActive && rightBonesActive && rightTransActive;
                     break;
                 default:
                     break;
@@ -143,7 +143,7 @@ namespace Unity.XR.PXR
                         rightWirstRot = rightHandJointLocations.jointLocations[i].pose.Orientation.ToQuat();
                     }
                 }
-                rightShapesHold = ShapesRecognizerCheck(rightJointPos, rightWirstRot * Vector3.left, rightWirstRot * Vector3.back, rightWirstRot * Vector3.up);
+                rightShapesHold = ShapesRecognizerCheck(rightJointPos, rightWirstRot * Vector3.left, rightWirstRot * Vector3.back);
                 rightShapesActive = HoldCheck(rightShapesHold, shapesHoldDuration, rightShapesActive, ref rightShapesHoldTime);
 
                 rightBonesHold = BonesCheck(HandType.HandRight);
@@ -169,7 +169,7 @@ namespace Unity.XR.PXR
                         leftWirstRot = leftHandJointLocations.jointLocations[i].pose.Orientation.ToQuat();
                     }
                 }
-                leftShapesHold = ShapesRecognizerCheck(leftJointPos, leftWirstRot * Vector3.right, leftWirstRot * Vector3.forward, leftWirstRot * Vector3.up);
+                leftShapesHold = ShapesRecognizerCheck(leftJointPos, leftWirstRot * Vector3.right, leftWirstRot * Vector3.forward, -1);
                 leftShapesActive = HoldCheck(leftShapesHold, shapesHoldDuration, leftShapesActive, ref leftShapesHoldTime);
 
                 leftBonesHold = BonesCheck(HandType.HandLeft);
@@ -211,7 +211,7 @@ namespace Unity.XR.PXR
         private bool thumbCurl, indexCurl, middleCurl, ringCurl, pinkyCurl;
         private bool thumbAbduc, indexAbduc, middleAbduc, ringAbduc, pinkyAbduc;
 
-        private bool ShapesRecognizerCheck(List<Vector3> jointPos, Vector3 wirstRight, Vector3 wirstForward, Vector3 wristUp)
+        private bool ShapesRecognizerCheck(List<Vector3> jointPos, Vector3 wirstRight, Vector3 wirstForward, int wirstDirect = 1)
         {
             thumb0 = jointPos[(int)HandJoint.JointThumbTip];
             thumb1 = jointPos[(int)HandJoint.JointThumbDistal];
@@ -238,11 +238,11 @@ namespace Unity.XR.PXR
             pinky2 = jointPos[(int)HandJoint.JointLittleIntermediate];
             pinky3 = jointPos[(int)HandJoint.JointLittleProximal];
 
-            thumbFlex = FlexionCheck(config.shapesRecognizer.thumb, wirstRight, wirstForward, wristUp);
-            indexFlex = FlexionCheck(config.shapesRecognizer.index, wirstRight, wirstForward, wristUp);
-            middleFlex = FlexionCheck(config.shapesRecognizer.middle, wirstRight, wirstForward, wristUp);
-            ringFlex = FlexionCheck(config.shapesRecognizer.ring, wirstRight, wirstForward, wristUp);
-            pinkyFlex = FlexionCheck(config.shapesRecognizer.pinky, wirstRight, wirstForward, wristUp);
+            thumbFlex = FlexionCheck(config.shapesRecognizer.thumb, wirstDirect * wirstRight, wirstDirect * wirstForward);
+            indexFlex = FlexionCheck(config.shapesRecognizer.index, wirstRight, wirstForward);
+            middleFlex = FlexionCheck(config.shapesRecognizer.middle, wirstRight, wirstForward);
+            ringFlex = FlexionCheck(config.shapesRecognizer.ring, wirstRight, wirstForward);
+            pinkyFlex = FlexionCheck(config.shapesRecognizer.pinky, wirstRight, wirstForward);
 
             thumbCurl = CurlCheck(config.shapesRecognizer.thumb);
             indexCurl = CurlCheck(config.shapesRecognizer.index);
@@ -256,11 +256,11 @@ namespace Unity.XR.PXR
             ringAbduc = AbductionCheck(config.shapesRecognizer.ring);
             pinkyAbduc = AbductionCheck(config.shapesRecognizer.pinky);
 
-            return thumbFlex & indexFlex & middleFlex & ringFlex & pinkyFlex
-                   & thumbCurl & indexCurl & middleCurl & ringCurl & pinkyCurl
-                   & thumbAbduc & indexAbduc & middleAbduc & ringAbduc & pinkyAbduc;
+            return thumbFlex && indexFlex && middleFlex && ringFlex && pinkyFlex
+                   && thumbCurl && indexCurl && middleCurl && ringCurl && pinkyCurl
+                   && thumbAbduc && indexAbduc && middleAbduc && ringAbduc && pinkyAbduc;
         }
-        private bool FlexionCheck(ShapesRecognizer.Finger finger, Vector3 wirstRight, Vector3 wirstForward, Vector3 wristUp)
+        private bool FlexionCheck(ShapesRecognizer.Finger finger, Vector3 wirstRight, Vector3 wirstForward)
         {
             if (finger.flexion == ShapesRecognizer.Flexion.Any) return true;
             else
@@ -392,14 +392,7 @@ namespace Unity.XR.PXR
             }
             if (min - rangeMin <= 1f)
             {
-                if (angle < max)
-                {
-                    angleCheckValid = true;
-                }
-                else
-                {
-                    angleCheckValid = false;
-                }
+                angleCheckValid = angle < max;
             }
             else if (angle < (min - width))
             {
@@ -408,14 +401,7 @@ namespace Unity.XR.PXR
 
             if (rangeMax - max <= 1f)
             {
-                if (angle > min)
-                {
-                    angleCheckValid = true;
-                }
-                else
-                {
-                    angleCheckValid = false;
-                }
+                angleCheckValid = angle > min;
             }
             else if ((angle > (max + width)))
             {

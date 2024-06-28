@@ -1,9 +1,9 @@
-﻿namespace Unity.XR.PXR
+﻿namespace Unity.XR.PICO.TOBSupport
 {
     public enum PICOCastOptionValueEnum
     {
         OPTION_VALUE_RESOLUTION_HIGH,
-        OPTION_VALUE_RESOLUTION_MIDDL,
+        OPTION_VALUE_RESOLUTION_MIDDLE,
         OPTION_VALUE_RESOLUTION_AUTO,
         OPTION_VALUE_RESOLUTION_HIGH_2K,
         OPTION_VALUE_RESOLUTION_HIGH_4K,

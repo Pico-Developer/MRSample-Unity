@@ -14,6 +14,13 @@ using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Scripting;
 using System.Runtime.CompilerServices;
+using UnityEngine.XR.Management;
+using UnityEngine.InputSystem;
+using UnityEngine.XR;
+using System.Collections.Generic;
+using UnityEngine.InputSystem.Controls;
+using UnityEngine.InputSystem.Layouts;
+using UnityEngine.InputSystem.XR;
 
 
 #if XR_HANDS
@@ -71,7 +78,6 @@ namespace Unity.XR.PXR
             base.OnDestroy();
         }
 
-
         class PXRHandSubsystemProvider : XRHandSubsystemProvider
         {
 
@@ -83,12 +89,12 @@ namespace Unity.XR.PXR
 
             public override void Start()
             {
-
+                CreateHands();
             }
 
             public override void Stop()
             {
-
+                DestroyHands();
             }
 
             public override void Destroy()
@@ -202,17 +208,17 @@ namespace Unity.XR.PXR
             /// <summary>
             /// Attempts to retrieve current hand-tracking data from the provider.
             /// </summary>
-            public override XRHandSubsystem.UpdateSuccessFlags TryUpdateHands(
-                XRHandSubsystem.UpdateType updateType,
-                ref UnityEngine.Pose leftHandRootPose,
+            public override UpdateSuccessFlags TryUpdateHands(
+                UpdateType updateType,
+                ref Pose leftHandRootPose,
                 NativeArray<XRHandJoint> leftHandJoints,
-                ref UnityEngine.Pose rightHandRootPose,
+                ref Pose rightHandRootPose,
                 NativeArray<XRHandJoint> rightHandJoints)
             {
                 if (!isValid)
-                    return XRHandSubsystem.UpdateSuccessFlags.None;
+                    return UpdateSuccessFlags.None;
 
-                XRHandSubsystem.UpdateSuccessFlags ret = UpdateSuccessFlags.None;
+                UpdateSuccessFlags ret = UpdateSuccessFlags.None;
 
                 const int handRootIndex = (int)HandJoint.JointWrist;
 
@@ -233,8 +239,9 @@ namespace Unity.XR.PXR
                                 ret |= UpdateSuccessFlags.LeftHandRootPose;
                             }
                         }
-
                         ret |= UpdateSuccessFlags.LeftHandJoints;
+
+                        PicoAimHand.left.UpdateHand(HandType.HandLeft, (ret & UpdateSuccessFlags.LeftHandRootPose) != 0);
                     }
                 }
 
@@ -256,12 +263,37 @@ namespace Unity.XR.PXR
 
                         }
                         ret |= UpdateSuccessFlags.RightHandJoints;
+
+                        PicoAimHand.right.UpdateHand(HandType.HandRight, (ret & UpdateSuccessFlags.RightHandRootPose) != 0);
                     }
                 }
 
                 return ret;
             }
 
+            void CreateHands()
+            {
+                if (PicoAimHand.left == null)
+                    PicoAimHand.left = PicoAimHand.CreateHand(InputDeviceCharacteristics.Left);
+
+                if (PicoAimHand.right == null)
+                    PicoAimHand.right = PicoAimHand.CreateHand(InputDeviceCharacteristics.Right);
+            }
+
+            void DestroyHands()
+            {
+                if (PicoAimHand.left != null)
+                {
+                    InputSystem.RemoveDevice(PicoAimHand.left);
+                    PicoAimHand.left = null;
+                }
+
+                if (PicoAimHand.right != null)
+                {
+                    InputSystem.RemoveDevice(PicoAimHand.right);
+                    PicoAimHand.right = null;
+                }
+            }
 
             /// <summary>
             /// Create Unity XRHandJoint From PXR HandJointLocation
@@ -274,7 +306,7 @@ namespace Unity.XR.PXR
             XRHandJoint CreateXRHandJoint(Handedness handedness, int unityHandJointIndex, in HandJointLocation joint)
             {
 
-                UnityEngine.Pose pose = UnityEngine.Pose.identity;
+                Pose pose = Pose.identity;
                 XRHandJointTrackingState state = XRHandJointTrackingState.None;
                 if ((joint.locationStatus & AllStatus) == AllStatus)
                 {
@@ -296,16 +328,270 @@ namespace Unity.XR.PXR
             /// <param name="pxrPose"></param>
             /// <returns></returns>
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            UnityEngine.Pose PXRPosefToUnityPose(in Unity.XR.PXR.Posef pxrPose)
+            Pose PXRPosefToUnityPose(in Posef pxrPose)
             {
                 Vector3 position = pxrPose.Position.ToVector3();
                 Quaternion orientation = pxrPose.Orientation.ToQuat();
-                return new UnityEngine.Pose(position, orientation);
+                return new Pose(position, orientation);
             }
 
         }
     }
-}
 
+    /// <remarks>
+    /// The <see cref="TrackedDevice.devicePosition"/> and
+    /// <see cref="TrackedDevice.deviceRotation"/> inherited from <see cref="TrackedDevice"/>
+    /// represent the aim pose. You can use these values to discover the target for pinch gestures,
+    /// when appropriate. 
+    /// 
+    /// Use the [XROrigin](xref:Unity.XR.CoreUtils.XROrigin) in the scene to position and orient
+    /// the device properly. If you are using this data to set the Transform of a GameObject in
+    /// the scene hierarchy, you can set the local position and rotation of the Transform and make
+    /// it a child of the <c>CameraOffset</c> object below the <c>XROrigin</c>. Otherwise, you can use the
+    /// Transform of the <c>CameraOffset</c> to transform the data into world space.
+    /// </remarks>
+#if UNITY_EDITOR
+    [UnityEditor.InitializeOnLoad]
+#endif
+    [Preserve, InputControlLayout(displayName = "Pico Aim Hand", commonUsages = new[] { "LeftHand", "RightHand" })]
+    public partial class PicoAimHand : TrackedDevice
+    {
+        /// <summary>
+        /// The left-hand <see cref="InputDevice"/> that contains
+        /// <see cref="InputControl"/>s that surface data in the Pico Hand
+        /// Tracking Aim extension.
+        /// </summary>
+        /// <remarks>
+        /// It is recommended that you treat this as read-only, and do not set
+        /// it yourself. It will be set for you if hand-tracking has been
+        /// enabled and if you are running with either the OpenXR or Oculus
+        /// plug-in.
+        /// </remarks>
+        public static PicoAimHand left { get; set; }
+
+        /// <summary>
+        /// The right-hand <see cref="InputDevice"/> that contains
+        /// <see cref="InputControl"/>s that surface data in the Pico Hand
+        /// Tracking Aim extension.
+        /// </summary>
+        /// <remarks>
+        /// It is recommended that you treat this as read-only, and do not set
+        /// it yourself. It will be set for you if hand-tracking has been
+        /// enabled and if you are running with either the OpenXR or Oculus
+        /// plug-in.
+        /// </remarks>
+        public static PicoAimHand right { get; set; }
+
+        /// <summary>
+        /// The pinch amount required to register as being pressed for the
+        /// purposes of <see cref="indexPressed"/>, <see cref="middlePressed"/>,
+        /// <see cref="ringPressed"/>, and <see cref="littlePressed"/>.
+        /// </summary>
+        public const float pressThreshold = 0.8f;
+
+        /// <summary>
+        /// A [ButtonControl](xref:UnityEngine.InputSystem.Controls.ButtonControl)
+        /// that represents whether the pinch between the index finger and
+        /// the thumb is mostly pressed (greater than a threshold of <c>0.8</c>
+        /// contained in <see cref="pressThreshold"/>).
+        /// </summary>
+        [Preserve, InputControl(offset = 0)]
+        public ButtonControl indexPressed { get; private set; }
+
+        /// <summary>
+        /// Cast the result of reading this to <see cref="PicoAimFlags"/> to examine the value.
+        /// </summary>
+        [Preserve, InputControl]
+        public IntegerControl aimFlags { get; private set; }
+
+        /// <summary>
+        /// An [AxisControl](xref:UnityEngine.InputSystem.Controls.AxisControl)
+        /// that represents the pinch strength between the index finger and
+        /// the thumb.
+        /// </summary>
+        /// <remarks>
+        /// A value of <c>0</c> denotes no pinch at all, while a value of
+        /// <c>1</c> denotes a full pinch.
+        /// </remarks>
+        [Preserve, InputControl]
+        public AxisControl pinchStrengthIndex { get; private set; }
+
+        /// <summary>
+        /// Perform final initialization tasks after the control hierarchy has been put into place.
+        /// </summary>
+        protected override void FinishSetup()
+        {
+            base.FinishSetup();
+
+            indexPressed = GetChildControl<ButtonControl>(nameof(indexPressed));
+            aimFlags = GetChildControl<IntegerControl>(nameof(aimFlags));
+            pinchStrengthIndex = GetChildControl<AxisControl>(nameof(pinchStrengthIndex));
+
+            var deviceDescriptor = XRDeviceDescriptor.FromJson(description.capabilities);
+            if (deviceDescriptor != null)
+            {
+                if ((deviceDescriptor.characteristics & InputDeviceCharacteristics.Left) != 0)
+                    InputSystem.SetDeviceUsage(this, UnityEngine.InputSystem.CommonUsages.LeftHand);
+                else if ((deviceDescriptor.characteristics & InputDeviceCharacteristics.Right) != 0)
+                    InputSystem.SetDeviceUsage(this, UnityEngine.InputSystem.CommonUsages.RightHand);
+            }
+        }
+
+        /// <summary>
+        /// Creates a <see cref="PicoAimHand"/> and adds it to the Input System.
+        /// </summary>
+        /// <param name="extraCharacteristics">
+        /// Additional characteristics to build the hand device with besides
+        /// <see cref="InputDeviceCharacteristics.HandTracking"/> and <see cref="InputDeviceCharacteristics.TrackedDevice"/>.
+        /// </param>
+        /// <returns>
+        /// A <see cref="PicoAimHand"/> retrieved from
+        /// <see cref="InputSystem.AddDevice(InputDeviceDescription)"/>.
+        /// </returns>
+        /// <remarks>
+        /// It is recommended that you do not call this yourself. It will be
+        /// called for you at the appropriate time if hand-tracking has been
+        /// enabled and if you are running with either the OpenXR or Oculus
+        /// plug-in.
+        /// </remarks>
+        public static PicoAimHand CreateHand(InputDeviceCharacteristics extraCharacteristics)
+        {
+            var desc = new InputDeviceDescription
+            {
+                product = k_PicoAimHandDeviceProductName,
+                capabilities = new XRDeviceDescriptor
+                {
+                    characteristics = InputDeviceCharacteristics.HandTracking | InputDeviceCharacteristics.TrackedDevice | extraCharacteristics,
+                    inputFeatures = new List<XRFeatureDescriptor>
+                    {
+                        new XRFeatureDescriptor
+                        {
+                            name = "index_pressed",
+                            featureType = FeatureType.Binary
+                        },
+                        new XRFeatureDescriptor
+                        {
+                            name = "aim_flags",
+                            featureType = FeatureType.DiscreteStates
+                        },
+                        new XRFeatureDescriptor
+                        {
+                            name = "aim_pose_position",
+                            featureType = FeatureType.Axis3D
+                        },
+                        new XRFeatureDescriptor
+                        {
+                            name = "aim_pose_rotation",
+                            featureType = FeatureType.Rotation
+                        },
+                        new XRFeatureDescriptor
+                        {
+                            name = "pinch_strength_index",
+                            featureType = FeatureType.Axis1D
+                        }
+                    }
+                }.ToJson()
+            };
+            return InputSystem.AddDevice(desc) as PicoAimHand;
+        }
+
+        /// <summary>
+        /// Queues update events in the Input System based on the supplied hand.
+        /// It is not recommended that you call this directly. This will be called
+        /// for you when appropriate.
+        /// </summary>
+        /// <param name="isHandRootTracked">
+        /// Whether the hand root pose is valid.
+        /// </param>
+        /// <param name="aimFlags">
+        /// The aim flags to update in the Input System.
+        /// </param>
+        /// <param name="aimPose">
+        /// The aim pose to update in the Input System. Used if the hand root is tracked.
+        /// </param>
+        /// <param name="pinchIndex">
+        /// The pinch strength for the index finger to update in the Input System.
+        /// </param>
+        public void UpdateHand(bool isHandRootTracked, HandAimStatus aimFlags, Posef aimPose, float pinchIndex)
+        {
+            if (aimFlags != m_PreviousFlags)
+            {
+                InputSystem.QueueDeltaStateEvent(this.aimFlags, (int)aimFlags);
+                m_PreviousFlags = aimFlags;
+            }
+
+            bool isIndexPressed = pinchIndex > pressThreshold;
+            if (isIndexPressed != m_WasIndexPressed)
+            {
+                InputSystem.QueueDeltaStateEvent(indexPressed, isIndexPressed);
+                m_WasIndexPressed = isIndexPressed;
+            }
+
+            InputSystem.QueueDeltaStateEvent(pinchStrengthIndex, pinchIndex);
+
+            if ((aimFlags & HandAimStatus.AimComputed) == 0)
+            {
+                if (m_WasTracked)
+                {
+                    InputSystem.QueueDeltaStateEvent(isTracked, false);
+                    InputSystem.QueueDeltaStateEvent(trackingState, InputTrackingState.None);
+                    m_WasTracked = false;
+                }
+
+                return;
+            }
+
+            if (isHandRootTracked)
+            {
+                InputSystem.QueueDeltaStateEvent(devicePosition, aimPose.Position.ToVector3());
+                InputSystem.QueueDeltaStateEvent(deviceRotation, aimPose.Orientation.ToQuat());
+
+                if (!m_WasTracked)
+                {
+                    InputSystem.QueueDeltaStateEvent(trackingState, InputTrackingState.Position | InputTrackingState.Rotation);
+                    InputSystem.QueueDeltaStateEvent(isTracked, true);
+                }
+
+                m_WasTracked = true;
+            }
+            else if (m_WasTracked)
+            {
+                InputSystem.QueueDeltaStateEvent(trackingState, InputTrackingState.None);
+                InputSystem.QueueDeltaStateEvent(isTracked, false);
+                m_WasTracked = false;
+            }
+        }
+
+        internal void UpdateHand(HandType handType, bool isHandRootTracked)
+        {
+
+            HandAimState handAimState = new HandAimState();
+            PXR_HandTracking.GetAimState(handType, ref handAimState);
+
+            UpdateHand(
+                isHandRootTracked,
+                handAimState.aimStatus,
+                handAimState.aimRayPose,
+                handAimState.touchStrengthRay);
+        }
+
+#if UNITY_EDITOR
+        static PicoAimHand() => RegisterLayout();
+#endif
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void RegisterLayout()
+        {
+            InputSystem.RegisterLayout<PicoAimHand>(
+                    matches: new InputDeviceMatcher()
+                    .WithProduct(k_PicoAimHandDeviceProductName));
+        }
+
+        const string k_PicoAimHandDeviceProductName = "Pico Aim Hand Tracking";
+
+        HandAimStatus m_PreviousFlags;
+        bool m_WasTracked;
+        bool m_WasIndexPressed;
+    }
+}
 
 #endif //XR_HANDS

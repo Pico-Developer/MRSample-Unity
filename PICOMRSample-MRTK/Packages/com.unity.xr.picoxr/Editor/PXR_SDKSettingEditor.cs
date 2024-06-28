@@ -263,10 +263,7 @@ namespace Unity.XR.PXR.Editor
             bool notApplied = (EditorUserBuildSettings.activeBuildTarget != recommendedBuildTarget) ||
                             (PlayerSettings.defaultInterfaceOrientation != recommendedOrientation);
 
-            if (!notApplied)
-                return true;
-            else
-                return false;
+            return !notApplied;
         }
 
         void EditorConfigurations(string strConfiguration, bool enable, ref bool toggle)

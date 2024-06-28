@@ -70,6 +70,7 @@ public partial class PXR_Audio_Spatializer_Context : MonoBehaviour
 
     public PXR_Audio.Spatializer.RenderingMode RenderingQuality => renderingQuality;
 
+    [SerializeField] private UnityEvent preInitEvent;
     [SerializeField] private UnityEvent lateInitEvent;
 
     private AudioConfiguration audioConfig;
@@ -449,7 +450,7 @@ public partial class PXR_Audio_Spatializer_Context : MonoBehaviour
             //  Create context
             StartInternal(renderingQuality);
             Debug.Log("Pico Spatializer Initialized.");
-            
+
             DontDestroyOnLoad(this);
         }
         else if (_instance != this)
@@ -460,30 +461,25 @@ public partial class PXR_Audio_Spatializer_Context : MonoBehaviour
 
     private void StartInternal(PXR_Audio.Spatializer.RenderingMode quality)
     {
+        preInitEvent.Invoke();
         uuid = GetUuid();
         PXR_Audio.Spatializer.Result ret = Result.Success;
-        if (spatializerApiImpl != SpatializerApiImpl.wwise)
-        {
-            audioConfig = AudioSettings.GetConfiguration();
-            ret = PXR_Audio_Spatializer_Api.CreateContext(
-                ref context,
-                quality,
-                (uint)audioConfig.dspBufferSize,
-                (uint)audioConfig.sampleRate);
-            if (ret != PXR_Audio.Spatializer.Result.Success)
-            {
-                Debug.LogError("Failed to create context, error code: " + ret);
-            }
 
-            ret = PXR_Audio_Spatializer_Api.InitializeContext(context);
-            if (ret != PXR_Audio.Spatializer.Result.Success)
-            {
-                Debug.LogError("Failed to initialize context, error code: " + ret);
-            }
-        }
-        else
+        audioConfig = AudioSettings.GetConfiguration();
+        ret = PXR_Audio_Spatializer_Api.CreateContext(
+            ref context,
+            quality,
+            (uint)audioConfig.dspBufferSize,
+            (uint)audioConfig.sampleRate);
+        if (ret != PXR_Audio.Spatializer.Result.Success)
         {
-            PXR_Audio_Spatializer_Api.ResetContext();
+            Debug.LogError("Failed to create context, error code: " + ret);
+        }
+
+        ret = PXR_Audio_Spatializer_Api.InitializeContext(context);
+        if (ret != PXR_Audio.Spatializer.Result.Success)
+        {
+            Debug.LogError("Failed to initialize context, error code: " + ret);
         }
 
         //  Add all the geometries back
@@ -525,14 +521,14 @@ public partial class PXR_Audio_Spatializer_Context : MonoBehaviour
 
     private void DestroyInternal()
     {
+        initialized = false;
+        uuid = -1;
         if (spatializerApiImpl == SpatializerApiImpl.wwise)
         {
+            PXR_Audio_Spatializer_Api.Destroy(context);
             context = IntPtr.Zero;
             return;
         }
-
-        initialized = false;
-        uuid = -1;
 
         //  Wait until all sources and listener's on-going audio DSP process had finished
         bool canContinue = true;

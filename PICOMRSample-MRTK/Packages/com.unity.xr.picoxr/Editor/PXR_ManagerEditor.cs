@@ -10,6 +10,7 @@ material is strictly forbidden unless prior written permission is obtained from
 PICO Technology Co., Ltd. 
 *******************************************************************************/
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -233,6 +234,85 @@ namespace Unity.XR.PXR.Editor
                 projectConfig.videoSeeThrough = EditorGUILayout.Toggle("Video Seethrough", projectConfig.videoSeeThrough);
             }
             projectConfig.spatialAnchor = EditorGUILayout.Toggle("Anchor", projectConfig.spatialAnchor);
+
+            //Super Resolution
+            var superresolutionContent = new GUIContent();
+            superresolutionContent.text = "Super Resolution";
+            superresolutionContent.tooltip = "Single pass spatial aware upscaling technique.\n\nThis can't be used with Sharpening. \nAlso can't be used along with subsample feature due to unsupported texture format. \n\nThis effect won't work properly under low resolutions when Adaptive Resolution is also enabled.";
+            projectConfig.superResolution = EditorGUILayout.Toggle(superresolutionContent, projectConfig.superResolution);
+            manager.enableSuperResolution = projectConfig.superResolution;
+
+            //Sharpening
+
+            var sharpeningContent = new GUIContent();
+            sharpeningContent.text = "Sharpening Mode";
+            sharpeningContent.tooltip = "Normal: Normal Quality \n\nQuality: Higher Quality, higher GPU usage\n\nThis effect won't work properly under low resolutions when Adaptive Resolution is also enabled.\n\nThis can't be used with Super Resolution. It will be automatically disabled when you enable Super Resolution. \nAlso can't be used along with subsample feature due to unsupported texture format";
+            var sharpeningEnhanceContent = new GUIContent();
+            sharpeningEnhanceContent.text = "Sharpening Enhance Mode";
+            sharpeningEnhanceContent.tooltip = "None: Full screen will be sharpened\n\nFixed Foveated: Only the central fixation point will be sharpened\n\nSelf Adaptive: Only when contrast between the current pixel and the surrounding pixels exceeds a certain threshold will be sharpened.\n\nThis menu will be only enabled while Sharpening (either Normal or Quality) is enabled.";
+
+            if (projectConfig.superResolution)
+            {
+                GUI.enabled = false;
+                manager.sharpeningMode = SharpeningMode.None;
+                manager.sharpeningEnhance = SharpeningEnhance.None;
+            }
+            else 
+            {
+                GUI.enabled = true;
+            }
+
+            manager.sharpeningMode = (SharpeningMode)EditorGUILayout.EnumPopup(sharpeningContent, manager.sharpeningMode);
+            if (manager.sharpeningMode == SharpeningMode.None)
+            {
+                manager.sharpeningEnhance = SharpeningEnhance.None;
+            }
+            else
+            {
+                manager.sharpeningEnhance = (SharpeningEnhance)EditorGUILayout.EnumPopup(sharpeningEnhanceContent, manager.sharpeningEnhance);
+            }
+
+            if (manager.sharpeningMode != SharpeningMode.None)
+            {
+                if (manager.sharpeningMode == SharpeningMode.Normal)
+                {
+                    projectConfig.normalSharpening = true;
+                    projectConfig.qualitySharpening = false;
+                }
+                else
+                {
+                    projectConfig.normalSharpening = false;
+                    projectConfig.qualitySharpening = true;
+                }
+
+                if (manager.sharpeningEnhance == SharpeningEnhance.Both)
+                {
+                    projectConfig.fixedFoveatedSharpening = true;
+                    projectConfig.selfAdaptiveSharpening = true;
+                }
+                else if (manager.sharpeningEnhance == SharpeningEnhance.FixedFoveated)
+                {
+                    projectConfig.fixedFoveatedSharpening = true;
+                    projectConfig.selfAdaptiveSharpening = false;
+                }
+                else if (manager.sharpeningEnhance == SharpeningEnhance.SelfAdaptive)
+                {
+                    projectConfig.fixedFoveatedSharpening = false;
+                    projectConfig.selfAdaptiveSharpening = true;
+                }
+                else
+                {
+                    projectConfig.fixedFoveatedSharpening = false;
+                    projectConfig.selfAdaptiveSharpening = false;
+                }
+            }
+            else
+            {
+                projectConfig.normalSharpening = false;
+                projectConfig.qualitySharpening = false;
+                projectConfig.fixedFoveatedSharpening = false;
+                projectConfig.selfAdaptiveSharpening = false;
+            }
 
             if (GUI.changed)
             {

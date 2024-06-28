@@ -1,10 +1,12 @@
 {
     "name": "Unity.XR.PICO",
+    "rootNamespace": "",
     "references": [
         "Unity.XR.Management",
         "Unity.InputSystem",
         "Unity.Subsystem.Registration",
-        "Unity.XR.Hands"
+        "Unity.XR.Hands",
+        "Unity.XR.PICO.LivePreview"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
@@ -28,6 +30,11 @@
             "name": "com.unity.xr.hands",
             "expression": "1.1.0",
             "define": "XR_HANDS"
+        },
+        {
+            "name": "com.unity.pico.livepreview",
+            "expression": "1.0.0",
+            "define": "PICO_LIVE_PREVIEW"
         }
     ],
     "noEngineReferences": false

@@ -5,7 +5,8 @@
     "Unity.XR.PICO",
     "Unity.XR.Management",
     "Unity.XR.Management.Editor",
-    "PICO.Platform"
+    "PICO.Platform",
+    "Unity.XR.OpenXR.Features.PICOSupport"
   ],
   "optionalUnityReferences": [],
   "includePlatforms": [

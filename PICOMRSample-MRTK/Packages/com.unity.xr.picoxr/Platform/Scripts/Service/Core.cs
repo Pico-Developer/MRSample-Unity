@@ -78,6 +78,11 @@ namespace Pico.Platform
         /// <exception cref="NotImplementedException">If the current platform is not supported, this exception will be thrown.</exception>
         public static Task<PlatformInitializeResult> AsyncInitialize(string appId = null)
         {
+            if (Initialized)
+            {
+                return new Task<PlatformInitializeResult>(0);
+            }
+
             appId = GetAppID(appId);
             if (String.IsNullOrWhiteSpace(appId))
             {

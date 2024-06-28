@@ -30,6 +30,7 @@ public class PXR_ControllerPower : MonoBehaviour
     private Texture power5;
 
     private Material powerMaterial;
+    private float interval = 2f;
     public PXR_Input.Controller hand;
 
     // Start is called before the first frame update
@@ -41,6 +42,10 @@ public class PXR_ControllerPower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        interval -= Time.deltaTime;
+        if (interval > 0) return; 
+        interval = 2f;
+
         var curBattery = 0f;
         switch (hand)
         {

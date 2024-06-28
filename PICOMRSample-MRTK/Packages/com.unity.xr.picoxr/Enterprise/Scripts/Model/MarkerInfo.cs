@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace Unity.XR.PXR
+namespace Unity.XR.PICO.TOBSupport
 {
     public class MarkerInfo
     {
@@ -28,7 +28,7 @@ namespace Unity.XR.PXR
         public double dTimestamp;
 
         // 预留标志位
-        public int[] reserve;
+        public float[] reserve;
 
         public override string ToString()
         {

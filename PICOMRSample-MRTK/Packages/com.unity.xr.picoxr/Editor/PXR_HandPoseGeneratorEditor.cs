@@ -361,7 +361,7 @@ namespace Unity.XR.PXR.Editor
         private void CurlConfig(ShapesRecognizer.Finger finger, ShapesRecognizer.RangeConfigs curlConfigs)
         {
             finger.curl = (ShapesRecognizer.Curl)EditorGUILayout.EnumPopup("Curl", finger.curl);
-            Vector2 defaultVal = new Vector2();
+            Vector2 defaultVal;
             switch (finger.curl)
             {
                 case ShapesRecognizer.Curl.Any:
@@ -397,8 +397,7 @@ namespace Unity.XR.PXR.Editor
             if (finger.handFinger == HandFinger.Pinky) return;
 
             finger.abduction = (ShapesRecognizer.Abduction)EditorGUILayout.EnumPopup("Abduction", finger.abduction);
-            Vector2 defaultVal = new Vector2();
-            defaultVal = GetDefaultShapeVal(finger.handFinger, ShapesRecognizer.ShapeType.abduction);
+            Vector2 defaultVal = GetDefaultShapeVal(finger.handFinger, ShapesRecognizer.ShapeType.abduction);
             abductionConfigs.mid = defaultVal.x;
             switch (finger.abduction)
             {

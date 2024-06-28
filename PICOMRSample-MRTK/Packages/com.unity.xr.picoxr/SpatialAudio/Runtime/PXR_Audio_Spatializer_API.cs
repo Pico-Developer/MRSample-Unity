@@ -203,8 +203,6 @@ namespace PXR_Audio
                 SourceMode mode);
 
             public abstract Result Destroy(IntPtr ctx);
-
-            public abstract Result ResetContext();
         }
 
         public class ApiUnityImpl : Api
@@ -316,7 +314,7 @@ namespace PXR_Audio
 
             [DllImport(DLLNAME, EntryPoint = "yggdrasil_audio_remove_mesh")]
             private static extern Result RemoveMeshImport(IntPtr ctx, int geometryId);
-            
+
             public override Result RemoveMesh(IntPtr ctx, int geometryId)
             {
                 return RemoveMeshImport(ctx, geometryId);
@@ -792,12 +790,6 @@ namespace PXR_Audio
                 return DestroyImport(ctx);
             }
 
-            public override Result ResetContext()
-            {
-                Debug.LogWarning("Unexpected API calling.");
-                return Result.Error;
-            }
-
             //  Call from Pico's unity native ambisonic decoder
             [DllImport("PicoAmbisonicDecoder", EntryPoint = "yggdrasil_audio_unity_ambisonic_decoder_update")]
             private static extern void AmbisonicDecoderUpdate();
@@ -820,6 +812,12 @@ namespace PXR_Audio
                 return GetVersionImport(ref major, ref minor, ref patch);
             }
 
+            [DllImport(DLLNAME, EntryPoint = "CSharp_PicoSpatializerWwise_CreateContext")]
+            private static extern Result CreateContextImport(ref IntPtr ctx,
+                RenderingMode mode,
+                uint framesPerBuffer,
+                uint sampleRate);
+
             public override Result
                 CreateContext(
                     ref IntPtr ctx,
@@ -828,14 +826,13 @@ namespace PXR_Audio
                     uint sampleRate
                 )
             {
-                Debug.LogWarning("Unexpected API calling.");
-                return Result.Error;
+                return CreateContextImport(ref ctx, mode, framesPerBuffer, sampleRate);
             }
 
             public override Result InitializeContext(IntPtr ctx)
             {
-                Debug.LogWarning("Unexpected API calling.");
-                return Result.Error;
+                Debug.Log("Wwise plugin will automatically initialize context after creating.");
+                return Result.Success;
             }
 
             [DllImport(DLLNAME, EntryPoint = "CSharp_PicoSpatializerWwise_SubmitMesh")]
@@ -888,24 +885,35 @@ namespace PXR_Audio
                     absorptionFactor, scatteringFactor, transmissionFactor, ref geometryId);
             }
 
+            [DllImport(DLLNAME, EntryPoint = "CSharp_PicoSpatializerWwise_SubmitMeshWithConfig")]
+            private static extern Result SubmitMeshWithConfigImport(IntPtr ctx, float[] vertices, int verticesCount,
+                int[] indices,
+                int indicesCount,
+                ref MeshConfig config, ref int geometryId);
+
             public override Result SubmitMeshWithConfig(IntPtr ctx, float[] vertices, int verticesCount, int[] indices,
                 int indicesCount,
                 ref MeshConfig config, ref int geometryId)
             {
-                Debug.LogWarning("Un-implemented API calling.");
-                return Result.Error;
+                return SubmitMeshWithConfigImport(ctx, vertices, verticesCount, indices, indicesCount, ref config,
+                    ref geometryId);
             }
+
+            [DllImport(DLLNAME, EntryPoint = "CSharp_PicoSpatializerWwise_RemoveMesh")]
+            private static extern Result RemoveMeshImport(IntPtr ctx, int geometryId);
 
             public override Result RemoveMesh(IntPtr ctx, int geometryId)
             {
-                Debug.LogWarning("Un-implemented API calling.");
-                return Result.Error;
+                return RemoveMeshImport(ctx, geometryId);
             }
+
+            [DllImport(DLLNAME, EntryPoint = "CSharp_PicoSpatializerWwise_SetMeshConfig")]
+            private static extern Result SetMeshConfigImport(IntPtr ctx, int geometryId, ref MeshConfig config,
+                uint propertyMask);
 
             public override Result SetMeshConfig(IntPtr ctx, int geometryId, ref MeshConfig config, uint propertyMask)
             {
-                Debug.LogWarning("Un-implemented API calling.");
-                return Result.Error;
+                return SetMeshConfigImport(ctx, geometryId, ref config, propertyMask);
             }
 
             [DllImport(DLLNAME, EntryPoint = "CSharp_PicoSpatializerWwise_GetAbsorptionFactor")]
@@ -1183,13 +1191,6 @@ namespace PXR_Audio
                 return Result.Error;
             }
 
-            [DllImport(DLLNAME, EntryPoint = "CSharp_PicoSpatializerWwise_SetListenerTransform")]
-            private static extern Result SetListenerPoseImport(
-                float[] position,
-                float[] front,
-                float[] up
-            );
-
             public override Result SetListenerPose(
                 IntPtr ctx,
                 float[] position,
@@ -1197,11 +1198,8 @@ namespace PXR_Audio
                 float[] up
             )
             {
-                position[2] = -position[2];
-                front[2] = -front[2];
-                up[2] = -up[2];
-                SetListenerPoseImport(position, front, up);
-                return Result.Success;
+                Debug.LogWarning("Unexpected API calling.");
+                return Result.Error;
             }
 
             public override Result SetSourcePosition(
@@ -1244,18 +1242,12 @@ namespace PXR_Audio
                 return Result.Error;
             }
 
+            [DllImport(DLLNAME, EntryPoint = "CSharp_PicoSpatializerWwise_Destroy")]
+            private static extern Result DestroyImport(IntPtr ctx);
+
             public override Result Destroy(IntPtr ctx)
             {
-                Debug.LogWarning("Unexpected API calling.");
-                return Result.Error;
-            }
-
-            [DllImport(DLLNAME, EntryPoint = "CSharp_PicoSpatializerWwise_ResetContext")]
-            private static extern Result ResetContextImported();
-
-            public override Result ResetContext()
-            {
-                return ResetContextImported();
+                return DestroyImport(ctx);
             }
         }
     }

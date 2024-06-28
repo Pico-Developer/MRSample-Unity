@@ -5167,6 +5167,21 @@ namespace Pico.Platform
         }
     }
 
+    public partial class CLIB
+    {
+        public partial struct __Internal
+        {
+            [DllImport("pxrplatformloader", EntryPoint = "ppf_CloudStorage_StartNewBackup", CallingConvention = __CallingConvention.Cdecl)]
+            internal static extern ulong ppf_CloudStorage_StartNewBackup();
+        }
+
+        public static ulong ppf_CloudStorage_StartNewBackup()
+        {
+            var __ret = __Internal.ppf_CloudStorage_StartNewBackup();
+            return __ret;
+        }
+    }
+
     /// <summary>The initialization result of the game service.</summary>
     public enum GameInitializeResult
     {
@@ -9149,7 +9164,8 @@ namespace Pico.Platform
         Highlight_ListMedia = 15114,
         Highlight_SaveMedia = 15115,
         Highlight_ShareMedia = 15116,
-        Notification_Highlight_OnRecordStop = 15150
+        Notification_Highlight_OnRecordStop = 15150,
+        CloudStorage_StartNewBackup = 16001,
     }
 
     /// <summary>Whether it is the first time that the user has joined the room or if the user is reconnected to the room.</summary>

@@ -126,6 +126,17 @@ namespace Unity.XR.PXR
             return PXR_Plugin.System.UPxr_GetPredictedMainSensorStateNew(ref sensorState, ref sensorFrameIndex);
         }
         
+        /// <summary>
+        /// Enables/disables content protection.
+        /// </summary>
+        /// <param name="data">Specifies whether to enable/disable content protection:
+        /// * `0`: disable
+        /// * `1`: enable
+        /// </param>
+        /// <returns>Whether content protection is successfully enabled/disabled:
+        /// * `0`: success
+        /// * `1`: failure
+        /// </returns>
         public static int ContentProtect(int data) {
             return PXR_Plugin.System.UPxr_ContentProtect(data);
         }
@@ -276,6 +287,155 @@ namespace Unity.XR.PXR
         {
             originMode = PxrTrackingOrigin.Eye;
             PXR_Plugin.System.UPxr_GetTrackingOrigin(ref originMode);
+        }
+
+        /// <summary>
+        /// Turns on the power service for a specified object.
+        /// </summary>
+        /// <param name="objName">The name of the object to turn on the power service for.</param>
+        /// <returns>Whether the power service has been turned on:
+        /// * `true`: success
+        /// * `false`: failure
+        /// </returns>
+        public static bool StartBatteryReceiver(string objName)
+        {
+            return PXR_Plugin.System.UPxr_StartBatteryReceiver(objName);
+        }
+
+        /// <summary>
+        /// Turns off the power service.
+        /// </summary>
+        /// <returns>Whether the power service has been turned off:
+        /// * `true`: success
+        /// * `false`: failure
+        /// </returns>
+        public static bool StopBatteryReceiver()
+        {
+            return PXR_Plugin.System.UPxr_StopBatteryReceiver();
+        }
+
+        /// <summary>
+        /// Sets the brightness for the current HMD.
+        /// </summary>
+        /// <param name="brightness">Target brightness. Value range: [0,255].</param>
+        /// <returns>Whether the brightness has been set successfully:
+        /// * `true`: success
+        /// * `false`: failure
+        /// </returns>
+        public static bool SetCommonBrightness(int brightness)
+        {
+            return PXR_Plugin.System.UPxr_SetBrightness(brightness);
+        }
+
+        /// <summary>
+        /// Gets the brightness of the current HMD.
+        /// </summary>
+        /// <returns>An int value that indicates the brightness. Value range: [0,255].</returns>
+        public static int GetCommonBrightness()
+        {
+            return PXR_Plugin.System.UPxr_GetCurrentBrightness();
+        }
+
+        /// <summary>
+        /// Gets the brightness level of the current screen.
+        /// </summary>
+        /// <returns>An int array. The first bit is the total brightness level supported, the second bit is the current brightness level, and it is the interval value of the brightness level from the third bit to the end bit.</returns>
+        public static int[] GetScreenBrightnessLevel()
+        {
+            return PXR_Plugin.System.UPxr_GetScreenBrightnessLevel();
+        }
+
+        /// <summary>
+        /// Sets a brightness level for the current screen.
+        /// </summary>
+        /// <param name="brightness">Brightness mode:
+        /// * `0`: system default brightness setting.
+        /// * `1`: custom brightness setting, you can then set param `level`.
+        /// </param>
+        /// <param name="level">Brightness level. Value range: [1,255].</param>
+        public static void SetScreenBrightnessLevel(int brightness, int level)
+        {
+            PXR_Plugin.System.UPxr_SetScreenBrightnessLevel(brightness, level);
+        }
+
+        /// <summary>
+        /// Turns on the volume service for a specified object.
+        /// </summary>
+        /// <param name="objName">The name of the object to turn on the volume service for.</param>
+        /// <returns>Whether the volume service has been turned on:
+        /// * `true`: success
+        /// * `false`: failure
+        /// </returns>
+        public static bool StartAudioReceiver(string objName)
+        {
+            return PXR_Plugin.System.UPxr_StartAudioReceiver(objName);
+        }
+
+        /// <summary>
+        /// Turns off the volume service.
+        /// </summary>
+        /// <returns>Whether the volume service has been turned off:
+        /// * `true`: success
+        /// * `false`: failure
+        /// </returns>
+        public static bool StopAudioReceiver()
+        {
+            return PXR_Plugin.System.UPxr_StopAudioReceiver();
+        }
+
+        /// <summary>
+        /// Gets the maximum volume. 
+        /// </summary>
+        /// <returns>An int value that indicates the maximum volume.</returns>
+        public static int GetMaxVolumeNumber()
+        {
+            return PXR_Plugin.System.UPxr_GetMaxVolumeNumber();
+        }
+
+        /// <summary>
+        /// Gets the current volume.
+        /// </summary>
+        /// <returns>An int value that indicates the current volume. Value range: [0,15].</returns>
+        public static int GetCurrentVolumeNumber()
+        {
+            return PXR_Plugin.System.UPxr_GetCurrentVolumeNumber();
+        }
+
+        /// <summary>
+        /// Increases the volume.
+        /// </summary>
+        /// <returns>Whether the volume has been increased:
+        /// * `true`: success
+        /// * `false`: failure
+        /// </returns>
+        public static bool VolumeUp()
+        {
+            return PXR_Plugin.System.UPxr_VolumeUp();
+        }
+
+        /// <summary>
+        /// Decreases the volume.
+        /// </summary>
+        /// <returns>Whether the volume has been decreased:
+        /// * `true`: success
+        /// * `false`: failure
+        /// </returns>
+        public static bool VolumeDown()
+        {
+            return PXR_Plugin.System.UPxr_VolumeDown();
+        }
+
+        /// <summary>
+        /// Sets a volume. 
+        /// </summary>
+        /// <param name="volume">The target volume. Value range: [0,15].</param>
+        /// <returns>Whether the target volume has been set:
+        /// * `true`: success
+        /// * `false`: failure
+        /// </returns>
+        public static bool SetVolumeNum(int volume)
+        {
+            return PXR_Plugin.System.UPxr_SetVolumeNum(volume);
         }
     }
 }

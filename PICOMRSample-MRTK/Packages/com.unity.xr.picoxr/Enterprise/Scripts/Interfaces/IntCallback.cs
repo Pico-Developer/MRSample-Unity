@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Unity.XR.PXR
+namespace Unity.XR.PICO.TOBSupport
 {
     public class IntCallback : AndroidJavaProxy
     {
@@ -14,8 +14,7 @@ namespace Unity.XR.PXR
 
         public void CallBack(int var1)
         {
-            Debug.Log("ToBService IIntCallback 回调:" + var1);
-            PXR_EnterpriseTools.Instance.QueueOnMainThread(() =>
+            PXR_EnterpriseTools.QueueOnMainThread(() =>
             {
                 if (mCallback != null)
                 {

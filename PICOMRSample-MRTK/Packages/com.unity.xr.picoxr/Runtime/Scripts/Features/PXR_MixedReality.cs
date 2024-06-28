@@ -417,7 +417,23 @@ namespace Unity.XR.PXR
         {
             return PXR_Plugin.Boundary.UPxr_SetSeeThroughBackground(state);
         }
-        
+
+        public static int EnableVideoSeeThroughEffect(bool value)
+        {
+            return PXR_Plugin.MixedReality.UPxr_EnableVideoSeeThroughEffect(value);
+        }
+
+        public static int SetVideoSeeThroughEffect(PxrLayerEffect type,float value,float duration)
+        {
+            return PXR_Plugin.MixedReality.UPxr_SetVideoSeeThroughEffect(type, value, duration);
+        }
+
+        public static int SetVideoSeeThroughLut(Texture2D texture, int row, int col)
+        {
+            var data = texture.GetRawTextureData();
+            return PXR_Plugin.MixedReality.UPxr_SetVideoSeeThroughLUT(ref data, texture.width, texture.height, row, col);
+        }
+
         [System.Obsolete("Deprecated. Please use CreateAnchorEntity", false)]
         public static int CreateSpatialAnchor(Vector3 position, Quaternion rotation, PxrReferenceType type, ref ulong handle)
         {

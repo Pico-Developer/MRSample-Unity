@@ -86,7 +86,7 @@ namespace Unity.XR.PXR
             }
 
             splashPath = AssetDatabase.GetAssetPath(systemSplashScreen);
-            if (Path.GetExtension(splashPath).ToLower() != ".png")
+            if (!string.Equals(Path.GetExtension(splashPath), ".png", StringComparison.OrdinalIgnoreCase))
             {
                 systemSplashScreen = null;
                 Debug.LogError("Invalid file format of System Splash Screen, only PNG format is supported. The asset path: " + splashPath); 

@@ -92,7 +92,7 @@ namespace Unity.XR.PXR
     /// <summary>
     /// Eye tracking data flags.
     /// </summary>
-    public enum EyeTrackingDataGetFlags: long
+    public enum EyeTrackingDataGetFlags : long
     {
         /// <summary>
         /// Do not return any data.
@@ -196,7 +196,7 @@ namespace Unity.XR.PXR
         }
     }
 
-    public struct Pose
+    public struct PxrPose
     {
         public PxrVector3f position;
         public PxrVector4f orientation;
@@ -211,7 +211,7 @@ namespace Unity.XR.PXR
     public struct PerEyeData
     {
         private int apiVersion;
-        public Pose pose;
+        public PxrPose pose;
         public byte isPoseValid;
         public float openness;
         public byte isOpennessValid;
@@ -310,7 +310,7 @@ namespace Unity.XR.PXR
     /// <summary>
     /// Specifies the face tracking data to return.
     /// </summary>
-    public enum FaceTrackingDataGetFlags: long
+    public enum FaceTrackingDataGetFlags : long
     {
         /// <summary>
         /// To return all types of face tracking data.
@@ -319,7 +319,7 @@ namespace Unity.XR.PXR
     }
 
     /// <summary>
-    /// The information to pass for starting eye tracking.
+    /// The information to pass for starting face tracking.
     /// </summary>
     public struct FaceTrackingStartInfo
     {
@@ -345,9 +345,9 @@ namespace Unity.XR.PXR
     {
         private int apiVersion;
         /// <summary>
-        /// Determines whether to stop face tracking.
-        /// * `0`: stop
-        /// * `1`: do not stop
+        /// Determines whether to pause face tracking.
+        /// * `0`: pause
+        /// * `1`: do not pause
         /// </summary>
         public byte pause;
         public void SetVersion(int version)
@@ -547,7 +547,7 @@ namespace Unity.XR.PXR
         /// <returns>Returns `0` for success and other values for failure.</returns>
         public static int GetEyeOpenness(ref float leftEyeOpenness, ref float rightEyeOpenness)
         {
-            return PXR_Plugin.MotionTracking.UPxr_GetEyeOpenness(ref leftEyeOpenness,ref rightEyeOpenness);
+            return PXR_Plugin.MotionTracking.UPxr_GetEyeOpenness(ref leftEyeOpenness, ref rightEyeOpenness);
         }
 
         /// <summary>
@@ -559,6 +559,16 @@ namespace Unity.XR.PXR
         public static int GetEyePupilInfo(ref EyePupilInfo eyePupilPosition)
         {
             return PXR_Plugin.MotionTracking.UPxr_GetEyePupilInfo(ref eyePupilPosition);
+        }
+
+        public static int GetPerEyePose(ref long timestamp, ref Posef leftEyePose, ref Posef rightPose)
+        {
+            return PXR_Plugin.MotionTracking.UPxr_GetPerEyePose(ref timestamp, ref leftEyePose, ref rightPose);
+        }
+
+        public static int GetEyeBlink(ref long timestamp, ref bool isLeftBlink, ref bool isRightBlink)
+        {
+            return PXR_Plugin.MotionTracking.UPxr_GetEyeBlink(ref timestamp, ref isLeftBlink, ref isRightBlink);
         }
 
         //Face Tracking

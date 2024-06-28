@@ -34,6 +34,11 @@ namespace Unity.XR.PXR
         public bool stageMode;
         public bool videoSeeThrough;
         public bool spatialAnchor;
+        public bool superResolution;
+        public bool normalSharpening;
+        public bool qualitySharpening;
+        public bool fixedFoveatedSharpening;
+        public bool selfAdaptiveSharpening;
 
         public static PXR_ProjectSetting GetProjectConfig()
         {
@@ -58,6 +63,11 @@ namespace Unity.XR.PXR
                 projectConfig.stageMode = false;
                 projectConfig.videoSeeThrough = false;
                 projectConfig.spatialAnchor = false;
+                projectConfig.superResolution = false;
+                projectConfig.normalSharpening = false;
+                projectConfig.qualitySharpening = false;
+                projectConfig.fixedFoveatedSharpening = false;
+                projectConfig.selfAdaptiveSharpening = false;
                 string path = Application.dataPath + "/Resources";
                 if (!Directory.Exists(path))
                 {

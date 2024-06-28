@@ -1,15 +1,27 @@
 //  Copyright © 2015-2022 Pico Technology Co., Ltd. All Rights Reserved.
 
 using System.Collections;
+using System.Runtime.InteropServices;
 using PXR_Audio.Spatializer;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioListener))]
 public class PXR_Audio_Spatializer_AudioListener : MonoBehaviour
 {
+    private enum OutputMethod
+    {
+        OnAudioFilterRead,
+        PicoAudioRouter
+    }
+
+    [SerializeField] private OutputMethod outputMethod = OutputMethod.OnAudioFilterRead;
+
+    private float[] temp_output_buffer = new float[2048];
+
     private bool isActive;
 
     private PXR_Audio_Spatializer_Context context;
+
     private PXR_Audio_Spatializer_Context Context
     {
         get
@@ -20,24 +32,25 @@ public class PXR_Audio_Spatializer_AudioListener : MonoBehaviour
         }
     }
 
-    private float[] positionArray = new float[3] {0.0f, 0.0f, 0.0f};
-    private float[] frontArray = new float[3] {0.0f, 0.0f, 0.0f};
-    private float[] upArray = new float[3] {0.0f, 0.0f, 0.0f};
+    private float[] positionArray = new float[3] { 0.0f, 0.0f, 0.0f };
+    private float[] frontArray = new float[3] { 0.0f, 0.0f, 0.0f };
+    private float[] upArray = new float[3] { 0.0f, 0.0f, 0.0f };
 
     private bool isAudioDSPInProgress = false;
 
     public bool IsAudioDSPInProgress
     {
-        get
-        {
-            return isAudioDSPInProgress;
-        }
+        get { return isAudioDSPInProgress; }
     }
 
     internal void RegisterInternal()
     {
         //  Initialize listener pose
-        UpdatePose();
+        if (Context.spatializerApiImpl != SpatializerApiImpl.wwise)
+        {
+            UpdatePose();
+        }
+
         isActive = true;
     }
 
@@ -50,7 +63,8 @@ public class PXR_Audio_Spatializer_AudioListener : MonoBehaviour
 
     void Update()
     {
-        if (isActive && context != null && context.Initialized && transform.hasChanged)
+        if (isActive && context != null && context.Initialized && transform.hasChanged &&
+            context.spatializerApiImpl != SpatializerApiImpl.wwise)
         {
             UpdatePose();
         }
@@ -76,13 +90,23 @@ public class PXR_Audio_Spatializer_AudioListener : MonoBehaviour
         Context.SetListenerPose(positionArray, frontArray, upArray);
     }
 
+    [DllImport("PicoAudioRouter", EntryPoint = "yggdrasil_audio_unity_audio_router_input")]
+    private static extern void PicoAudioRouterInput(float[] inBuffer, int inBufferSize, int inChannels);
+
     private void OnAudioFilterRead(float[] data, int channels)
     {
-        if (!isActive || context == null || !context.Initialized || Context.spatializerApiImpl==SpatializerApiImpl.wwise)
+        if (!isActive || context == null || !context.Initialized ||
+            Context.spatializerApiImpl == SpatializerApiImpl.wwise)
             return;
 
         isAudioDSPInProgress = true;
-        context.GetInterleavedBinauralBuffer(data, (uint) (data.Length / channels), true);
+        if (outputMethod == OutputMethod.OnAudioFilterRead)
+            context.GetInterleavedBinauralBuffer(data, (uint)(data.Length / channels), true);
+        else if (outputMethod == OutputMethod.PicoAudioRouter)
+        {
+            context.GetInterleavedBinauralBuffer(temp_output_buffer, (uint)(data.Length / channels), false);
+            PicoAudioRouterInput(temp_output_buffer, data.Length / channels, channels);
+        }
         isAudioDSPInProgress = false;
     }
 }

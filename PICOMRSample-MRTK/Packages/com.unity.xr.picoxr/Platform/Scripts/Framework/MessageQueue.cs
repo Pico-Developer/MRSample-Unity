@@ -29,6 +29,11 @@ namespace Pico.Platform
                     break;
                 }
 
+                case MessageType.CloudStorage_StartNewBackup:
+                    {
+                        msg = new Message(msgPointer);
+                        break;
+                    }
 
                 #region speech
 

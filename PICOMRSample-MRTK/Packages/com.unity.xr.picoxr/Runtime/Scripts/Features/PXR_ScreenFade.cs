@@ -75,7 +75,7 @@ namespace Unity.XR.PXR
                 nowTime += Time.deltaTime;
                 nowFadeAlpha = Mathf.Lerp(1.0f, 0, Mathf.Clamp01(nowTime / gradientTime));
                 SetAlpha();
-                yield return new WaitForEndOfFrame();
+                yield return null;
             }
         }
 

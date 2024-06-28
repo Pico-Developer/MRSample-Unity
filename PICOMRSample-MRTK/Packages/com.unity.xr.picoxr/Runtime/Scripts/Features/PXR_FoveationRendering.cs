@@ -45,15 +45,19 @@ namespace Unity.XR.PXR
         /// * `true`: ETFR
         /// * `false`: not ETFR
         /// </param>
-        public static void SetFoveationLevel(FoveationLevel level, bool isETFR)
+        /// <returns>
+        /// * `true`: success
+        /// * `false`: failure
+        /// </returns>
+        public static bool SetFoveationLevel(FoveationLevel level, bool isETFR)
         {
             if (isETFR)
             {
-                PXR_Plugin.Render.UPxr_SetEyeFoveationLevel(level);
+                return PXR_Plugin.Render.UPxr_SetEyeFoveationLevel(level);
             }
             else
             {
-                PXR_Plugin.Render.UPxr_SetFoveationLevel(level);
+                return PXR_Plugin.Render.UPxr_SetFoveationLevel(level);
             }
         }
 

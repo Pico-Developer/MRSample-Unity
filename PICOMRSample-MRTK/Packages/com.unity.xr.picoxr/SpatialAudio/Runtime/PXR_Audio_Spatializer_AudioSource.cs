@@ -12,7 +12,7 @@ public class PXR_Audio_Spatializer_AudioSource : MonoBehaviour
     [SerializeField] [Range(0.0f, 24.0f)] private float sourceGainDB = 0.0f;
     private float sourceGainAmplitude = 1.0f;
 
-    [SerializeField] private float reflectionGainDB = 0.0f;
+    [SerializeField] [Range(-120.0f, 48.0f)] private float reflectionGainDB = 0.0f;
     private float reflectionGainAmplitude = 1.0f;
 
     [SerializeField] [Range(0.0f, 100000.0f)]

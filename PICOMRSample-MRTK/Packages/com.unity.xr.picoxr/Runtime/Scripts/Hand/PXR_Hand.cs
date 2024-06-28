@@ -68,7 +68,7 @@ public class PXR_Hand : MonoBehaviour
                 }
                 else
                 {
-                    UnityEngine.Pose parentPose = UnityEngine.Pose.identity;
+                    Pose parentPose = Pose.identity;
 
                     if (i == (int)HandJoint.JointPalm ||
                         i == (int)HandJoint.JointThumbMetacarpal ||
@@ -77,11 +77,11 @@ public class PXR_Hand : MonoBehaviour
                         i == (int)HandJoint.JointRingMetacarpal ||
                         i == (int)HandJoint.JointLittleMetacarpal)
                     {
-                        parentPose = new UnityEngine.Pose(handJointLocations.jointLocations[1].pose.Position.ToVector3(), handJointLocations.jointLocations[1].pose.Orientation.ToQuat());
+                        parentPose = new Pose(handJointLocations.jointLocations[1].pose.Position.ToVector3(), handJointLocations.jointLocations[1].pose.Orientation.ToQuat());
                     }
                     else
                     {
-                        parentPose = new UnityEngine.Pose(handJointLocations.jointLocations[i-1].pose.Position.ToVector3(), handJointLocations.jointLocations[i-1].pose.Orientation.ToQuat());
+                        parentPose = new Pose(handJointLocations.jointLocations[i-1].pose.Position.ToVector3(), handJointLocations.jointLocations[i-1].pose.Orientation.ToQuat());
                     }
                     
                     var inverseParentRotation = Quaternion.Inverse(parentPose.rotation);
