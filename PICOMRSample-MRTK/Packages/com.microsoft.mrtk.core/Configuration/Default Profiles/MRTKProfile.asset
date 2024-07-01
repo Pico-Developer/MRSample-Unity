@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isCustomProfile: 0
   loadedSubsystems:
+  - reference: Microsoft.MixedReality.Toolkit.Input.SyntheticHandsSubsystem, Microsoft.MixedReality.Toolkit.Input
   - reference: Microsoft.MixedReality.Toolkit.Input.MRTKHandsAggregatorSubsystem,
       Microsoft.MixedReality.Toolkit.Input
-  - reference: Microsoft.MixedReality.Toolkit.Input.SyntheticHandsSubsystem, Microsoft.MixedReality.Toolkit.Input
   - reference: PicoMRTK3Support.Runtime.PicoMRTKHandsSubsystem, PIcoMRTK3Support.Runtime
   - reference: Microsoft.MixedReality.Toolkit.Diagnostics.MRTKPerformanceStatsSubsystem,
       Microsoft.MixedReality.Toolkit.Diagnostics
