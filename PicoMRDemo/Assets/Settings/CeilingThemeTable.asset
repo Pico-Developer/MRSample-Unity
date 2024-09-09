@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a2323300f54d11822831ea5b1bd4f7, type: 3}
+  m_Name: CeilingThemeTable
+  m_EditorClassIdentifier: 
+  CeilingThemeDatas:
+  - _title: ^MINIMALISTIC
+    _description: ^TEST
+    _type: 1
+    _id: 3000
+    _itemType: 1
+    _sprite: {fileID: 21300000, guid: 02ed5cb8ccd3da541aa0da102c2e0c2c, type: 3}
+  - _title: ^CEILING_ONE
+    _description: ^TEST_ONE
+    _type: 1
+    _id: 3001
+    _itemType: 1
+    _sprite: {fileID: 21300000, guid: 4ef93dbf0be34de4a95bf503baccb4a9, type: 3}
+  - _title: ^CEILING_TWO
+    _description: ^TEST_TWO
+    _type: 1
+    _id: 3002
+    _itemType: 1
+    _sprite: {fileID: 21300000, guid: a47cb7761a50d9843a4f7f3c22c3a76b, type: 3}

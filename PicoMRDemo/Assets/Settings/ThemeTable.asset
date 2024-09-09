@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a1ef41b9f2d45539fa4479667caf370, type: 3}
+  m_Name: ThemeTable
+  m_EditorClassIdentifier: 
+  ThemeDatas:
+  - _themeId: 100
+    _title: ^MINIMALISTIC
+    _description: ^TEST
+    _type: 0
+    _idList: e803000000000000d007000000000000b80b000000000000
+    _sprite: {fileID: 21300000, guid: 5c8685224191a804c98b4a2e1cc854d6, type: 3}
+  - _themeId: 101
+    _title: ^THEME_ONE
+    _description: ^TEST_STYLE_ONE
+    _type: 0
+    _idList: e903000000000000d107000000000000b90b000000000000
+    _sprite: {fileID: 21300000, guid: c6da34316a3f2ca4b9e74a9c953153b7, type: 3}
+  - _themeId: 102
+    _title: ^THEME_TWO
+    _description: ^TEST_STYLE_TWO
+    _type: 0
+    _idList: ea03000000000000d207000000000000ba0b000000000000
+    _sprite: {fileID: 21300000, guid: c12200a97197717468e7e27e3d24c474, type: 3}

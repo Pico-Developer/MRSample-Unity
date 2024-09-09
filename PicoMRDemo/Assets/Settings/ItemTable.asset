@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1adb8719fb74c04a5161a3f4cb0ae9a, type: 3}
+  m_Name: ItemTable
+  m_EditorClassIdentifier: 
+  ItemDatas:
+  - _title: ^TENNIS_BALL
+    _description: ^TENNIS_INFO
+    _type: 4
+    _id: 3
+    _itemType: 1
+    _sprite: {fileID: 21300000, guid: 25a929a620f3041438f010b2aeb42f94, type: 3}
+  - _title: ^GUN
+    _description: ^GUN_INFO
+    _type: 4
+    _id: 5
+    _itemType: 5
+    _sprite: {fileID: 21300000, guid: 17f5f563090c10f4ab7a07f67282212e, type: 3}
+  - _title: ^MAGIC_WAND
+    _description: ^MAGIC_WAND_INFO
+    _type: 4
+    _id: 6
+    _itemType: 9
+    _sprite: {fileID: 21300000, guid: 972d789601c9a4c4bb392cd4fb7eab4f, type: 3}
+  - _title: ^PEN
+    _description: ^PEN_INFO
+    _type: 4
+    _id: 100
+    _itemType: 3
+    _sprite: {fileID: 21300000, guid: f138ec334fa87d8409f3d94129b6cfb4, type: 3}
+  - _title: ^ROLLER
+    _description: ^ROLLER_INFO
+    _type: 4
+    _id: 101
+    _itemType: 3
+    _sprite: {fileID: 21300000, guid: ba0f41128c62f55478ba2f75b3690761, type: 3}
+  - _title: ^BRUSH
+    _description: ^BRUSH_INFO
+    _type: 4
+    _id: 102
+    _itemType: 3
+    _sprite: {fileID: 21300000, guid: d294920f5bf15cf42a2c6e39d122b59d, type: 3}
+  - _title: ^ERASER
+    _description: ^ERASE_INFO
+    _type: 4
+    _id: 103
+    _itemType: 3
+    _sprite: {fileID: 21300000, guid: 4f09c46af5f911243a9b6c5e76d1eb71, type: 3}
+  - _title: ^PAINTGUN
+    _description: ^PAINTGUNL_INFO
+    _type: 4
+    _id: 7
+    _itemType: 129
+    _sprite: {fileID: 21300000, guid: 17f5f563090c10f4ab7a07f67282212e, type: 3}

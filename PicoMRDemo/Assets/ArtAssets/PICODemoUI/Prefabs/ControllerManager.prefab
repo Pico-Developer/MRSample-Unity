@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &732131267816738106
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6231925289742817826}
+  - component: {fileID: 3126500353124024906}
+  m_Layer: 28
+  m_Name: ControllerManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6231925289742817826
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732131267816738106}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3126500353124024906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732131267816738106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3553c654bfb9d2e49a683a801a8bb064, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LeftControllerRoot: {fileID: 0}
+  RightControllerRoot: {fileID: 0}
+  LeftControllerPreviewPoint: {fileID: 0}
+  RightControllerPreviewPoint: {fileID: 0}
+  menuBtnLeft: {fileID: 3454528603711736882, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  primaryBtnLeft: {fileID: -6867301087596129828, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  primaryBtnPressedLeft: {fileID: 9006441322128740514, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  primaryBtnUpLeft: {fileID: -1748302255274542643, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  primaryBtnRight: {fileID: -4587854507695845689, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  primaryBtnPressedRight: {fileID: 2193691940006636855, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  primaryBtnUpRight: {fileID: 2935027184386953821, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  gripBtnLeft: {fileID: 777541249195759161, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  gripBtnPressedLeft: {fileID: 7323737810541570333, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  gripBtnUpLeft: {fileID: -954303960817653615, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  gripBtnRight: {fileID: -489481830397517877, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  gripBtnPressedRight: {fileID: -1424114661859338814, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  gripBtnUpRight: {fileID: 2342342272699435928, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  triggerBtnLeft: {fileID: -5982496924579745919, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  triggerBtnRight: {fileID: 83097790271614945, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  secondaryBtnLeft: {fileID: 5078764009913575287, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  secondaryBtnPressedLeft: {fileID: 4097332033045099587, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  secondaryBtnUpLeft: {fileID: 7256962328508142799, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  secondaryBtnRight: {fileID: -2939259793837233452, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  secondaryBtnPressedRight: {fileID: -2383517079365206818, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  secondaryBtnUpRight: {fileID: 3130253653760043166, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  rotateAnchorHorizontalActionLeft: {fileID: 554940806908337222, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  rotateAnchorHorizontalActionRight: {fileID: -8057608436766329212, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  rotateAnchorVerticalActionLeft: {fileID: -4738486734412864409, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  rotateAnchorVerticalActionRight: {fileID: 1660197084167010947, guid: 44be74886d466084da7443cbada4085e, type: 3}

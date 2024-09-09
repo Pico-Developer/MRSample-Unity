@@ -1,0 +1,99 @@
+LangCode	EN	ZH_CN
+^OUTSIDE_TIP	You have left the area of Room Capure. Please return to the calibrated area to continue the experience.	你已经离开MR标定的空间区域，请返回标定区域内继续完成体验
+^QUIT_APP	Save and Exit	保存并退出
+^QUIT_TIP_INFO	This will save room capture, theme, and spatial anchors (ball drop slides) and exit	保存房间标定，房间主题，以及小球滑道锚点数据，并退出应用
+^CANCEL	Cancel	取消
+^OK	OK	确定
+^LOG_INFORMATION	Log information	日志信息
+^LOG_DETAIL	Log detail	日志详情
+^MR_SAMPLE	MR Sample	MR 示例
+^DECORATE_ROOM	Decorate Room	装饰房间
+^DOODLE_WALL	Doodle Wall	墙面涂鸦
+^SHOOT_BALLOONS	Shoot Balloons	射气球
+^VIRTUAL_WORLD	Virtual World	虚拟世界
+^DEBUG	Debug	调试
+^THEME	Theme	主题
+^CEILING	Ceiling	天花板
+^WALL	Wall	墙面
+^GROUND	Floor	地面
+^DECORATIONS	Decorations	装饰品
+^DOODLE_TOOL	Doodle Tools	涂鸦工具
+^QUIT	Quit	退出
+^MINIMALISTIC	Minimalistic	极简
+^TEST_STYLE		
+^STYLE_ONE	Patterned Wall	花纹墙面
+^STYLE_TWO	Striped Wall	条纹墙面
+^TEST_STYLE_ONE	Patterned Wall and Celling, Oak Flooring	花纹墙面和天花板，橡木地板
+^TEST_STYLE_TWO	Stripped Wall, Wooden Celling, Redwood Flooring	条纹墙面，木质天花板，红木地板
+^TEST	Transparent, For Testing	透明材质，可以用于测试
+^TEST_ONE		
+^TEST_TWO		
+^THEME_ONE	Theme Room 1	主题房间1
+^THEME_TWO	Theme Room 2	主题房间2
+^CEILING_ONE	Patterned Celling	花纹天花板
+^CEILING_TWO	Wooden Celling	木质天花板
+^GROUND_ONE	Oak Flooring	橡木地板
+^GROUND_TWO	Redwood Flooring	红木地板
+^TENNIS_BALL	Tennis Ball	网球
+^VASE	Vase	花瓶
+^GUN	Gun	枪
+^MAGIC_WAND	Magic wand	魔法棒
+^PEN	Pen	画笔
+^ROLLER	Roller	滚筒
+^BRUSH	Brush	刷子
+^ERASER	Eraser	橡皮擦
+^TENNIS_INFO	Elastic ball with gravity	有重力的弹性球
+^VASE_INFO	Fragile prop	易碎的道具
+^GUN_INFO	Start shooting game	开启射击游戏
+^MAGIC_WAND_INFO	Enter the virtual world	开启虚拟世界
+^PEN_INFO	Doodle pen	可以涂鸦的笔
+^ROLLER_INFO	Doodle roller	可以涂鸦的滚筒
+^BRUSH_INFO	Doodle brush	可以涂鸦的刷子
+^ERASE_INFO	Doodle eraser	可以擦掉涂鸦
+^WELCOME_INFO	Welcome to the New MR Horizon	欢迎进入MR新视界
+^ENTER_TIP_INFO	Put on PICO, Enter a New MR Horizon.	戴上PICO, 开启MR新视界
+^CLEAR_DATA	Clear Data	清除数据
+^CLEAR_ANCHOR_DATA	Clear the spatial anchor data	清除锚点主题数据
+^HOME_PAGE	Home Page	首页
+^BALL_DROP	Ball Drop	小球下落
+^PAINT_BALL	Paintball	彩弹射击
+^HOME_PAGE_INTRO	This sample showcases MR capabilities of the PICO Unity Integration SDK, including video passthrough, spatial calibration, spatial anchors, and more. You can experience use-cases such as room decoration, wall doodling, virtual pet, and shooting games. You can also switch between manual and auto modes for spatial calibration.	首页简介占位
+^MANUAL_SPATIAL_CALIBRATION_PAGE	Manual Spatial Calibration	手动标定标题
+^AUTO_SPATIAL_CALIBRATION_PAGE	Auto Spatial Calibration	自动标定标题
+^MANUAL_SPATIAL_CALIBRATION_INTRO	Manual Spatial Calibration Introduction	手动标定介绍
+^AUTO_SPATIAL_CALIBRATION_INTRO	Auto Spatial Calibration Introduction	自动标定介绍
+^ENABLE	Enable	启用
+^USING	Using	使用中
+^DECORATE_ROOM_INTRODUCTION	Decorate your room with different wall, floor, and ceiling textures. This scene demonstrates a use-case of Room Capture.	用不同风格的墙面，地面和天花板来装饰房间吧。这个场景示范了房间标定的一个应用。
+^BALL_DROP_BALL	Ball	小球
+^BALL_DROP_BALL_DESCR	Has gravity and collides with the slides	受重力和滑道影响
+^BALL_DROP_DOMINO	Domino	多米诺骨牌
+^BALL_DROP_DOMINO_DESCR	Has gravity and collides with the ball	有重力，可与小球碰撞
+^BALL_DROP_SLIDE	Slide	滑道
+^BALL_DROP_SLIDE_DESCR	To be anchored in space for the ball to slide on	用于锚定在空间中供小球滑动
+^BALL_DROP_INTRO	This scene demostrates a ball sliding down a track formed by slides that use Spatial Anchors. You can click on the object menu below to build the ball drop experience. \n \nTrigger: Preview creation\nGrip: End experience\nY/B: Delete created items	演示小球在空间锚点的滑道上滑落。你可以点击下面的物体在空间中搭建滑道并模拟小球延轨道下落撞击骨牌。\n\nTrigger键: 预览创建\nGrip键: 结束体验\nY/B键: 删除创建物品
+^BALL_DROP_DEMO_BUTTON	Demo Setup	演示模板
+^BALL_DROP_CLEAR_BALL_BUTTON	Clear Balls	清除小球
+^BALL_DROP_CLEAR_DOMINO_BUTTON	Clear Dominoes	清除骨牌
+^BALL_DROP_CLEAR_SLIDE_BUTTON	Clear Slides	清除滑道
+^BALL_DROP_CLEAR_ALL_BUTTON	Clear All	清除全部
+^MAIN_HOME_INTRO	This sample demonstrates PICO Integration SDK's Sense Pack capabilities and their applications. \nClick the scenes on the left to experience these MR features:)\n\nTo open this menu, press A/X Button	本示例演示了 PICO Integration SDK 中 Sense Pack 的能力及应用。\n点击左侧菜单中的场景，体验丰富的混合现实（MR）功能吧:) \n\n按下 A 或 X 键可以打开本菜单。
+^ROOM_CAPTURE	Scene Capture	房间标定
+^ROOM_CAPTURE_INTRO	You can manually mark physical structures such as walls, doors, windows, tables, and sofas in your room for the virtual scene and object interactions.	你可以手动将房间中的墙、门窗、桌椅、沙发等标定出来，用于虚拟场景和物体的交互。
+^ANCHOR_LABLE_VISUALIZER	Show Anchor Label	标签显隐
+^DOODLE_INTRODUCTION	This scene provides several doodle tools. \n\nPress Trigger to select a tool, Hold B/Y button to paint on the walls.\nJoystick Left or Right: Change Color, Grip: Cancel	涂鸦工具提供了几种不同种类的工具，你可以选择不同的工具，按住B/Y键来在标定出的墙面上进行涂鸦，通过左右推动摇杆来更改颜色，通过Grip键来取消交互。
+^SHOOT_BALLOON_INTRO	The balloon shooting game generates balloons floating upwards within the calibrated space. Use the gun in your hand to shoot them. \n\nTrigger: Shoot\n\nGrip: End Game	射气球游戏会在标定的空间内生成向上漂浮的气球，你可以使用手中的枪来射击气球。\n\nTrigger键: 射击\nGrip键: 结束游戏
+^VIRTUAL_WORLD_INTRO	In the virtual world feature, you can use a magic wand to open a virtual world based on the calibrated space and allow virtual pets to enter it.\n\nTrigger: Open/Close Virtual World\nGrip: End Experience	虚拟世界功能中，可以基于标定的空间使用魔杖打开一个虚拟的世界，并可以让虚拟宠物进入其中。\n\nTrigger键: 打开/关闭虚拟世界\nGrip键: 结束体验
+^PAINTBALL_INTRO	You can use the paintball gun to shoot freely within the space and leave paintings on the wall.\n\nTrigger: Shoot\nGrip: End Game	彩弹射击功能中，你可以使用彩弹枪在空间中随意射击留下彩弹的印记。\n\nTrigger键: 射击\nGrip键: 结束游戏
+^PLAY	Play	试玩
+^ENTERROOM_TIP	Press the A/X button to open the main menu.	按下 A 或 X 键，打开主菜单
+^VIRTUAL PET_INTRODUACTION	You can play fetch with a virtual pet using the tennis ball, or touch the pet to interact with it.	你可以扔出网球让宠物去捡球，也可触摸宠物与其互动。
+^VIRTUAL PET	Virtual Pet	虚拟宠物
+^RECALIBRATE	Recalibrate	重新标定
+^SPATIALMESH	Use Mesh Scanning	使用网格扫描
+^SPATIALMESH_INTRO	For PICO 4 Ultra, you can use the new Mesh Scanning mode.	PICO 4 Ultra 用户可使用新的静默环境网格扫描。如要继续体验其他功能，请在使用后关闭扫描。
+^RESET_VIRTUAL_PET_POSITION	Recall Pet	召回宠物
+^CREATE_ANCHOR	Create Anchor	创建锚点
+^CREATE_ANCHOR_TIPS	Trigger: Create anchor\nGrip: End experience\nY/B: Delete anchor	Trigger 键: 预览锚点\nGrip 键: 结束体验\nY/B 键: 删除锚点
+^CLEAR_DATA_TIPS	Save Room Capture, Room Theme, and Spatial Anchors (Ball Drop Slides) data	保存房间标定，房间主题，和空间锚点（小球滑道）数据
+^SAVE_DATA	Save Data	保存数据

@@ -1,0 +1,29 @@
+{
+    "name": "PicoMRDemo.Runtime",
+    "rootNamespace": "PicoMRDemo.Runtime",
+    "references": [
+        "Unity.XR.PICO",
+        "Unity.XR.Interaction.Toolkit",
+        "Unity.TextMeshPro",
+        "Unity.InputSystem",
+        "UnityHFSM",
+        "DOTween.Modules",
+        "UniTask.DOTween",
+        "VContainer",
+        "UniTask",
+        "OpenFracture",
+        "behaviac.runtime",
+        "AstarPathfindingProject",
+        "Localization.Modules",
+        "PICO.Platform"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

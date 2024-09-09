@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99f23bb2e35d40478316d73c19e09275, type: 3}
+  m_Name: WallThemeTable
+  m_EditorClassIdentifier: 
+  WallThemeDatas:
+  - _title: ^MINIMALISTIC
+    _description: ^TEST
+    _type: 2
+    _id: 1000
+    _itemType: 1
+    _sprite: {fileID: 21300000, guid: 9269288c110c5734b8f3e5ac9b69eff2, type: 3}
+  - _title: ^STYLE_ONE
+    _description: ^TEST_ONE
+    _type: 2
+    _id: 1001
+    _itemType: 1
+    _sprite: {fileID: 21300000, guid: 3c1709d763d13ab4ba7cf193068a1c0f, type: 3}
+  - _title: ^STYLE_TWO
+    _description: ^TEST_ONE
+    _type: 2
+    _id: 1002
+    _itemType: 1
+    _sprite: {fileID: 21300000, guid: fad2e7e7c89a44e41b2a8fe29f654722, type: 3}

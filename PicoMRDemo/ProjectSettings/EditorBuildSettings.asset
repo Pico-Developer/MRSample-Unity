@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/SampleScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/DemoScenes/SceneCapture.unity
+    guid: f626e13c31b38e74087ffc7a6a8421b2
+  - enabled: 1
+    path: Assets/Scenes/DemoScenes/BallDrop.unity
+    guid: afdae09a34dc8dd49823fb68da24d5aa
+  - enabled: 1
+    path: Assets/Scenes/DemoScenes/SpatialAnchor.unity
+    guid: 0e77bd89976c5d342a94b3b06f94a0a9
+  - enabled: 1
+    path: Assets/Scenes/DemoScenes/SpatialMesh.unity
+    guid: da1a65ac8733ddf45bd5525190245756
+  - enabled: 1
+    path: Assets/Scenes/DemoScenes/Seethrough.unity
+    guid: b5ae20ddc05872c41aad292a8f7ac5bb
+  - enabled: 1
+    path: Assets/Scenes/DemoScenes/SharedSpatialAnchor.unity
+    guid: 23790b42468fec3458df6593f550b81b
+  m_configObjects:
+    Unity.XR.PXR.Settings: {fileID: 11400000, guid: 586db4213751f4641a8ef3b86fcb4f0d, type: 2}
+    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: b1f7c156b37769f49b60a5581a36bec6, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 2228331c55eb348cbad24ca8ae26d315, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 5e792fa0bee97a44dbf6509a61043ae7, type: 2}

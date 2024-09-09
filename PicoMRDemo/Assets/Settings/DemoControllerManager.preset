@@ -1,0 +1,143 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!181963792 &2655988077585873504
+Preset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: DemoControllerManager
+  m_TargetType:
+    m_NativeTypeID: 114
+    m_ManagedTypePPtr: {fileID: 11500000, guid: 3553c654bfb9d2e49a683a801a8bb064, type: 3}
+    m_ManagedTypeFallback: 
+  m_Properties:
+  - target: {fileID: 0}
+    propertyPath: m_Enabled
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorHideFlags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorClassIdentifier
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: LeftControllerRoot
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: RightControllerRoot
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: LeftControllerPreviewPoint
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: RightControllerPreviewPoint
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: menuBtnLeft
+    value: 
+    objectReference: {fileID: 3454528603711736882, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  - target: {fileID: 0}
+    propertyPath: primaryBtnLeft
+    value: 
+    objectReference: {fileID: -6867301087596129828, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  - target: {fileID: 0}
+    propertyPath: primaryBtnPressedLeft
+    value: 
+    objectReference: {fileID: 9006441322128740514, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  - target: {fileID: 0}
+    propertyPath: primaryBtnUpLeft
+    value: 
+    objectReference: {fileID: -1748302255274542643, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  - target: {fileID: 0}
+    propertyPath: primaryBtnRight
+    value: 
+    objectReference: {fileID: -4587854507695845689, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  - target: {fileID: 0}
+    propertyPath: primaryBtnPressedRight
+    value: 
+    objectReference: {fileID: 2193691940006636855, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  - target: {fileID: 0}
+    propertyPath: primaryBtnUpRight
+    value: 
+    objectReference: {fileID: 2935027184386953821, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  - target: {fileID: 0}
+    propertyPath: gripBtnLeft
+    value: 
+    objectReference: {fileID: 777541249195759161, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  - target: {fileID: 0}
+    propertyPath: gripBtnPressedLeft
+    value: 
+    objectReference: {fileID: 7323737810541570333, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  - target: {fileID: 0}
+    propertyPath: gripBtnUpLeft
+    value: 
+    objectReference: {fileID: -954303960817653615, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  - target: {fileID: 0}
+    propertyPath: gripBtnRight
+    value: 
+    objectReference: {fileID: -489481830397517877, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  - target: {fileID: 0}
+    propertyPath: gripBtnPressedRight
+    value: 
+    objectReference: {fileID: -1424114661859338814, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  - target: {fileID: 0}
+    propertyPath: gripBtnUpRight
+    value: 
+    objectReference: {fileID: 2342342272699435928, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  - target: {fileID: 0}
+    propertyPath: triggerBtnLeft
+    value: 
+    objectReference: {fileID: -5982496924579745919, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  - target: {fileID: 0}
+    propertyPath: triggerBtnRight
+    value: 
+    objectReference: {fileID: 83097790271614945, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  - target: {fileID: 0}
+    propertyPath: secondaryBtnLeft
+    value: 
+    objectReference: {fileID: 5078764009913575287, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  - target: {fileID: 0}
+    propertyPath: secondaryBtnPressedLeft
+    value: 
+    objectReference: {fileID: 4097332033045099587, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  - target: {fileID: 0}
+    propertyPath: secondaryBtnUpLeft
+    value: 
+    objectReference: {fileID: 7256962328508142799, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  - target: {fileID: 0}
+    propertyPath: secondaryBtnRight
+    value: 
+    objectReference: {fileID: -2939259793837233452, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  - target: {fileID: 0}
+    propertyPath: secondaryBtnPressedRight
+    value: 
+    objectReference: {fileID: -2383517079365206818, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  - target: {fileID: 0}
+    propertyPath: secondaryBtnUpRight
+    value: 
+    objectReference: {fileID: 3130253653760043166, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  - target: {fileID: 0}
+    propertyPath: rotateAnchorHorizontalActionLeft
+    value: 
+    objectReference: {fileID: 554940806908337222, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  - target: {fileID: 0}
+    propertyPath: rotateAnchorHorizontalActionRight
+    value: 
+    objectReference: {fileID: -8057608436766329212, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  - target: {fileID: 0}
+    propertyPath: rotateAnchorVerticalActionLeft
+    value: 
+    objectReference: {fileID: -4738486734412864409, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  - target: {fileID: 0}
+    propertyPath: rotateAnchorVerticalActionRight
+    value: 
+    objectReference: {fileID: 1660197084167010947, guid: 44be74886d466084da7443cbada4085e, type: 3}
+  m_ExcludedProperties: []
