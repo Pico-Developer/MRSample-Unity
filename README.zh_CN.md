@@ -1,4 +1,4 @@
-# Pico MR Demo
+# PICO MR Sample
 
 中文README | [English](./README.md)
 
@@ -12,16 +12,11 @@
 
 ## Use the demo
 
-这是一个展示Pico MR功能的项目
-
-目的
-
-- 为开发者提供MR功能的效果展示与代码参考，让开发者可以下载demo在Pico设备上真实体验效果，了解MR各项功能的适用场景，也给他们提供一些灵感，激发他们创建更多新奇的体验。
-- 站在开发角度，实际使用MR SDK，通过demo的开发过程，及时发现SDK接入或是功能效果相关问题，尽早解决，从而提升SDK的质量，以及开发者的对接效率。
+在这个MR示例项目中，您可以找到展示PICO Integration SDK 中 Sense Pack（MR）的功能的各个示例场景，包括透视（Seethrough）、空间锚定（Spatial Anchor）、共享空间锚定（Shared Spatial Anchor）、空间网格（Spatial Mesh）。您还可以找到一个综合的应用场景，展示了这些MR功能的一些应用例子。
 
 ## Learn more
 
-有关演示的更多信息，请参阅[这篇文章]()。
+有关该示例项目的的更多信息，请参阅[这篇文章]()。
 
 ## LICENSE
 
