@@ -1,4 +1,4 @@
-# Pico MR Demo
+# PICO MR Sample
 English | [中文README](./README.zh_CN.md)
 
 ## Development environment
@@ -11,12 +11,7 @@ English | [中文README](./README.zh_CN.md)
 
 ## Use the demo
 
-This is a project to demonstrate the functionality of Pico MR
-
-aim
-
-- Provide developers with the effect display and code reference of MR Functions, so that developers can download demo to experience the real effect on Pico devices, understand the applicable scenarios of MR Functions, and provide them with some inspiration to inspire them to create more novel experiences.
-- From the perspective of development, the actual use of MR SDK, through the development process of demo, timely discovery of SDK access or functional effects related problems, solve as soon as possible, so as to improve the quality of SDK and the docking efficiency of developers.
+You can find Unity Scenes that each demonstrates a feature of the latest Sense Pack (MR) of the PICO Integration SDK, including Seethrough, Spatial Anchor, Shared Spatial Anchor, Spatial Mesh. You can also find an app scene that showcases several use-cases of these MR features.
 
 ## Learn more
 
