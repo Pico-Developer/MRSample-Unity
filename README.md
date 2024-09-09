@@ -15,7 +15,7 @@ In this MR sample project, you can find Scenes that each demonstrates a feature 
 
 ## Learn more
 
-For more information about the demo, refer to [this article]().
+For more detailed documentation about this sample, refer to [this article]().
 
 ## LICENSE
 This project is licensed under the [MIT License](./License.md).
