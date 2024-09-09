@@ -9,9 +9,9 @@ English | [中文README](./README.zh_CN.md)
 - Graphics API: Vulkan
 - App structure: 64-bit
 
-## Use the demo
+## Using the sample project
 
-You can find Unity Scenes that each demonstrates a feature of the latest Sense Pack (MR) of the PICO Integration SDK, including Seethrough, Spatial Anchor, Shared Spatial Anchor, Spatial Mesh. You can also find an app scene that showcases several use-cases of these MR features.
+In this MR sample project, you can find Scenes that each demonstrates a feature of the latest Sense Pack (MR) of the PICO Integration SDK, including Seethrough, Spatial Anchor, Shared Spatial Anchor, Spatial Mesh. You can also find an app Scene that showcases several example use-cases of these MR features.
 
 ## Learn more
 
