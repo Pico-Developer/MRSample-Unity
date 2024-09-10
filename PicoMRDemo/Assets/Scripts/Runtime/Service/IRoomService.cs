@@ -334,7 +334,7 @@ namespace PicoMRDemo.Runtime.Service
                 wall.transform.localPosition = Vector3.zero;
                 wall.transform.localScale = Vector3.one;
                 var meshCollider = wall.AddComponent<MeshCollider>();
-                meshCollider.convex = false;
+                meshCollider.convex = true;
                 wall.layer = 9;
 
                 CreateWhiteBoard(wall.transform, new Vector3(box2DInfo.Extent.x, box2DInfo.Extent.y, 0.1f));
