@@ -67,7 +67,7 @@ namespace PicoMRDemo.Runtime.Service
                 if (Physics.Raycast(ray, out var hit, Mathf.Infinity, LayerMask.GetMask("Wall")))
                 {
                     Debug.Log(hit.collider.gameObject.name);
-                    wall = _entityManager.GetRoomEntities().FirstOrDefault(x => (x.GetRoomLabel() == PxrSemanticLabel.Wall||x.GetRoomLabel() == PxrSemanticLabel.VirtualWall)  && x.GameObject == hit.collider.transform.parent.parent.parent.gameObject);//&& !IsEntityHasWindow(x)
+                    wall = _entityManager.GetRoomEntities().FirstOrDefault(x => (x.GetRoomLabel() == PxrSemanticLabel.Wall||x.GetRoomLabel() == PxrSemanticLabel.VirtualWall)  && x.GameObject == hit.collider.transform.parent.gameObject);//&& !IsEntityHasWindow(x)
                 }
                 wall ??= _entityManager.GetRoomEntities().First(x => (x.GetRoomLabel() == PxrSemanticLabel.Wall || x.GetRoomLabel() == PxrSemanticLabel.VirtualWall));// && !IsEntityHasWindow(x));
                 DrawPortal(wall);

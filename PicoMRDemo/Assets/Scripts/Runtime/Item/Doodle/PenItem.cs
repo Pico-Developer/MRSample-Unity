@@ -87,7 +87,7 @@ namespace PicoMRDemo.Runtime.Runtime.Item
         {
             var controller = ControllerManager.Instance.GetController(_isLeftController);
             Ray ray = new Ray(controller.transform.position, controller.transform.forward);
-            if (Physics.Raycast(ray, out var hit, Mathf.Infinity, LayerMask.GetMask("Wall")))
+            if (Physics.Raycast(ray, out var hit, Mathf.Infinity, LayerMask.GetMask("Water")))
             {
                 curDoodleRoot.transform.position = hit.point;
                 curDoodleRoot.SetActive(true);
