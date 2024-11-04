@@ -27,6 +27,7 @@ namespace PicoMRDemo.Runtime.Mock
         private IList<IEntity> GameEntities = new List<IEntity>();
         private GameObject _roomEntityRoot;
         private GameObject _gameEntityRoot;
+        
         [Inject]
         private IPersistentLoader _persistentLoader;
         public async UniTask ClearRoomEntities()
@@ -350,8 +351,12 @@ namespace PicoMRDemo.Runtime.Mock
 
         public UniTask ClearGameEntities()
         {
+            foreach (var gameEntity in GameEntities)
+            {
+                Object.Destroy(gameEntity.GameObject);
+            }
+            GameEntities.Clear();
             return UniTask.CompletedTask;
-            //throw new NotImplementedException();
         }
 
         public async UniTask<IEntity> CreateAndAddEntity(GameObject gameObject)
@@ -378,7 +383,6 @@ namespace PicoMRDemo.Runtime.Mock
                 IsRoomEntity = false,
             };
             Debug.unityLogger.Log(TAG, $"Create Entity, uuid: {entity.AnchorData.Uuid}, handle: {entity.AnchorData.Handle}");
-            GameEntities.Add(entity);
             return entity;
         }
         

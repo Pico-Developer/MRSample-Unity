@@ -85,17 +85,17 @@ namespace PicoMRDemo.Runtime.UI
         }
         private async void OnSaveThemeDataButton()
         {
-            await _entityManager.ClearGameEntities();
-            _persistentLoader.ClearAllThemeData();
-            await _persistentLoader.DeleteAllData();
-            _themeManager.SwitchToDefaultTheme();
+            await _entityManager.SaveGameEntities();
+            _persistentLoader.StageAllThemeData(_themeManager.GetCurrentThemes());
+            await _persistentLoader.SaveAllData();
         }
         
         private async void OnClearThemeDataButton()
         {
-            await _entityManager.SaveGameEntities();
-            _persistentLoader.StageAllThemeData(_themeManager.GetCurrentThemes());
-            await _persistentLoader.SaveAllData();
+            await _entityManager.ClearGameEntities();
+            _persistentLoader.ClearAllThemeData();
+            await _persistentLoader.DeleteAllData();
+            _themeManager.SwitchToDefaultTheme();
         }
         private async void OnReCaptureRoomButton()
         {

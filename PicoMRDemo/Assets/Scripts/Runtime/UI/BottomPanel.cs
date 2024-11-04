@@ -43,9 +43,9 @@ namespace PicoMRDemo.Runtime.UI
         {
             DialogPool.SetTitle("^QUIT_APP");
             DialogPool.SetBody("^QUIT_TIP_INFO");
-            DialogPool.SetFirstButton("^OK", () =>
+            DialogPool.SetFirstButton("^OK", async() =>
             {
-                _entityManager.SaveGameEntities();
+                await _entityManager.SaveGameEntities();
                 _persistentLoader.StageAllThemeData(_themeManager.GetCurrentThemes());
                 _persistentLoader.SaveAllData();
                 Application.Quit();

@@ -6,7 +6,9 @@
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 using System.Collections.Generic;
+using System.Linq;
 using PicoMRDemo.Runtime.Data;
+using PicoMRDemo.Runtime.Data.Anchor;
 using PicoMRDemo.Runtime.Entity;
 using PicoMRDemo.Runtime.Runtime.Item;
 using PicoMRDemo.Runtime.Service;
@@ -50,36 +52,44 @@ namespace PicoMRDemo.Runtime.Runtime.BallDrop
             {
                 if (hit.collider.CompareTag("BallDropBall"))
                 {
+                    Object.Destroy(hit.collider.gameObject);
                     foreach (var ball in Balls)
                     {
                         if (hit.collider.gameObject == ball)
                         {
                             Balls.Remove(ball);
-                            Object.Destroy(ball);
                             return;
                         }
                     }
                 }
                 if (hit.collider.CompareTag("BallDropBlock"))
                 {
+                    Object.Destroy(hit.collider.gameObject);
                     foreach (var block in Blocks)
                     {
                         if (hit.collider.gameObject == block)
                         {
                             Blocks.Remove(block);
-                            Object.Destroy(block);
                             return;
                         }
                     }
                 }
                 if (hit.collider.CompareTag("BallDropRoad"))
                 {
+                    var gameEntities = _entityManager.GetGameEntities().ToArray();
+                    foreach (var gameEntity in gameEntities)
+                    {
+                        if (hit.collider.transform.parent.gameObject == gameEntity.GameObject)
+                        {
+                            _entityManager.DeleteEntity(gameEntity);
+                        }
+                    }
                     foreach (var road in Roads)
                     {
                         if (hit.collider.transform.parent.gameObject == road.GameObject)
                         {
+                            //_entityManager.DeleteEntity(road.Entity);
                             Roads.Remove(road);
-                            _entityManager.DeleteEntity(road.Entity);
                             return;
                         }
                     }
@@ -105,8 +115,8 @@ namespace PicoMRDemo.Runtime.Runtime.BallDrop
             item.Entity = entity;
             item.EntityManager = _entityManager;
             Roads.Add(item);
-
         }
+        
         
         public void CreateBlockObj(bool isLeftController)
         {
@@ -134,9 +144,13 @@ namespace PicoMRDemo.Runtime.Runtime.BallDrop
 
         public void ClearRoads()
         {
-            foreach (var road in Roads)
+            var gameEntities = _entityManager.GetGameEntities().ToArray();
+            foreach (var gameEntity in gameEntities)
             {
-                _entityManager.DeleteEntity(road.Entity);
+                if (gameEntity.GameObject.CompareTag("BallDropRoad"))
+                {
+                    _entityManager.DeleteEntity(gameEntity);
+                }
             }
             Roads.Clear();
         }
