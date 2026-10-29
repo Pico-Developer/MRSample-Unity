@@ -7,7 +7,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 using System;
 using System.Collections.Generic;
-using Unity.XR.PXR;
+using ByteDance.PICO.XR;
 using UnityEngine;
 using UnityEngine.InputSystem;
 //Using in Demo scene BallDrop

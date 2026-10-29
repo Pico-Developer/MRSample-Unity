@@ -115,8 +115,8 @@ public class Prefracture : MonoBehaviour
         var rigidBody = obj.AddComponent<Rigidbody>();
         // When pre-fracturing, freeze the rigid body so the fragments don't all crash to the ground when the scene starts.
         rigidBody.constraints = RigidbodyConstraints.FreezeAll;
-        rigidBody.drag = this.GetComponentInParent<Rigidbody>().drag;
-        rigidBody.angularDrag = this.GetComponentInParent<Rigidbody>().angularDrag;
+        rigidBody.linearDamping = this.GetComponentInParent<Rigidbody>().linearDamping;
+        rigidBody.angularDamping = this.GetComponentInParent<Rigidbody>().angularDamping;
         rigidBody.useGravity = this.GetComponentInParent<Rigidbody>().useGravity;
 
         var unfreeze = obj.AddComponent<UnfreezeFragment>();

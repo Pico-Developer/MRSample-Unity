@@ -15,7 +15,7 @@ using PicoMRDemo.Runtime.Runtime.Item;
 using PicoMRDemo.Runtime.Runtime.SDK;
 using PicoMRDemo.Runtime.Data.Anchor;
 using PicoMRDemo.Runtime.Game;
-using Unity.XR.PXR;
+using ByteDance.PICO.XR;
 using UnityEngine;
 using VContainer;
 using Object = UnityEngine.Object;

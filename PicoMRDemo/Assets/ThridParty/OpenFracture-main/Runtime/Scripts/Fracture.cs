@@ -234,10 +234,10 @@ public class Fracture : MonoBehaviour
         // Copy rigid body properties to fragment
         var thisRigidBody = this.GetComponentInParent<Rigidbody>();
         var fragmentRigidBody = obj.AddComponent<Rigidbody>();
-        fragmentRigidBody.velocity = thisRigidBody.velocity;
+        fragmentRigidBody.linearVelocity = thisRigidBody.linearVelocity;
         fragmentRigidBody.angularVelocity = thisRigidBody.angularVelocity;
-        fragmentRigidBody.drag = thisRigidBody.drag;
-        fragmentRigidBody.angularDrag = thisRigidBody.angularDrag;
+        fragmentRigidBody.linearDamping = thisRigidBody.linearDamping;
+        fragmentRigidBody.angularDamping = thisRigidBody.angularDamping;
         fragmentRigidBody.useGravity = thisRigidBody.useGravity;
 
         // If refracturing is enabled, create a copy of this component and add it to the template fragment object

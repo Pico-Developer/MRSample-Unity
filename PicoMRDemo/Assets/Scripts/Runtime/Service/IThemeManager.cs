@@ -7,7 +7,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 using System.Collections.Generic;
 using PicoMRDemo.Runtime.Data.Decoration;
-using Unity.XR.PXR;
+using ByteDance.PICO.XR;
 
 namespace PicoMRDemo.Runtime.Service
 {

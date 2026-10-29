@@ -10,6 +10,8 @@ using System;
 using UnityEngine;
 using TMPro;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class SpaceAnchor : MonoBehaviour
 {

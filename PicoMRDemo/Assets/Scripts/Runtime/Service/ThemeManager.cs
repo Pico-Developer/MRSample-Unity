@@ -13,7 +13,7 @@ using PicoMRDemo.Runtime.Data.Decoration;
 using PicoMRDemo.Runtime.Entity;
 using PicoMRDemo.Runtime.Runtime.PresetDecoration;
 using PicoMRDemo.Runtime.Runtime.Theme;
-using Unity.XR.PXR;
+using ByteDance.PICO.XR;
 using UnityEngine;
 using VContainer;
 

@@ -59,7 +59,7 @@ namespace PicoMRDemo.Runtime.Runtime.ShootingGame
                     _colliderToBalloonMap.TryAdd(balloonCollider, balloon);
                 }
             }
-            balloon.RigidBody.velocity = Vector3.up * 0.2f;
+            balloon.RigidBody.linearVelocity = Vector3.up * 0.2f;
             Balloons.Add(balloon);
             return balloon;
         }
@@ -116,7 +116,7 @@ namespace PicoMRDemo.Runtime.Runtime.ShootingGame
             var bulletPrefab = _resourceLoader.AssetSetting.Bullet;
             var obj = Object.Instantiate(bulletPrefab, position, Quaternion.LookRotation(direction),_entityManager.GetGameEntityRoot());
             // obj.transform.position = position;
-            obj.GetComponent<Rigidbody>().velocity = velocity;
+            obj.GetComponent<Rigidbody>().linearVelocity = velocity;
             var bullet = obj.GetComponent<IBullet>();
             bullet.BalloonInteractionManager = this;
             Bullets.Add(bullet);

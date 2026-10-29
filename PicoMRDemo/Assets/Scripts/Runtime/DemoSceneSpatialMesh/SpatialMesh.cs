@@ -55,7 +55,7 @@ public class SpatialMesh : MonoBehaviour
         var obj = Instantiate(ballPrefab, position, Quaternion.LookRotation(direction));
         // obj.transform.position = position;
         obj.SetActive(true);
-        obj.GetComponent<Rigidbody>().velocity = velocity;
+        obj.GetComponent<Rigidbody>().linearVelocity = velocity;
         var ballMaterial = new Material(Shader.Find("Universal Render Pipeline/Unlit"));
         ballMaterial.color = new Color(Random.Range(0f,1f), Random.Range(0f,1f), Random.Range(0f,1f));
         obj.GetComponent<Renderer>().material = ballMaterial;

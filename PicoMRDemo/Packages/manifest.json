@@ -1,7 +1,10 @@
 {
   "dependencies": {
+    "com.bytedance.pico.mcp-extensions": "https://github.com/Pico-Developer/Unity-MCP-Extensions.git#main",
+    "com.bytedance.pico.xr": "https://github.com/Pico-Developer/PICO-Unity-SDK.git?path=/XR#main",
     "com.cysharp.unitask": "2.3.3",
     "com.inspiaaa.unityhfsm": "1.9.0",
+    "com.unity.ai.assistant": "2.21.0-pre.2",
     "com.unity.ai.navigation": "1.1.5",
     "com.unity.collab-proxy": "2.2.0",
     "com.unity.feature.2d": "2.0.0",

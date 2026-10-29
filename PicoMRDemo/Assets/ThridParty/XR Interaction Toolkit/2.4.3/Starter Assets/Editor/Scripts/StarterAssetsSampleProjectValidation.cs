@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.XR.CoreUtils.Editor;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 namespace UnityEditor.XR.Interaction.Toolkit.Samples
 {

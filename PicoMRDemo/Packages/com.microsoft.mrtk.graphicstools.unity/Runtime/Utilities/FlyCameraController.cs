@@ -95,7 +95,7 @@ namespace Microsoft.MixedReality.GraphicsTools
         /// </summary>
         private void Start()
         {
-            SubsystemManager.GetInstances(xrDisplaySubsystems);
+            SubsystemManager.GetSubsystems(xrDisplaySubsystems);
         }
 
         /// <summary>

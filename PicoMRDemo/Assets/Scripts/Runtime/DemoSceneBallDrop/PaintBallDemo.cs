@@ -77,7 +77,7 @@ public class PaintBallDemo : MonoBehaviour
         copiedMaterial.color = ballColor;
         particleeffect.GetComponent<Renderer>().sharedMaterial = copiedMaterial;
         SpatialMesh.Instance.AddPaintEffect(hitEffectPrefab);
-        RigidBody.velocity /= 2f;
+        RigidBody.linearVelocity /= 2f;
     }
 
     private void Update()

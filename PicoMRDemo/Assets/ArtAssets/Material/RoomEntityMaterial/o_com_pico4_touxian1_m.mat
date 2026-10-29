@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 7
+  version: 10
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -25,14 +25,16 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - _EMISSION
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap:
     RenderType: Opaque
-  disabledShaderPasses: []
+  disabledShaderPasses:
+  - MOTIONVECTORS
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -76,10 +78,12 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaClip: 0
+    - _AlphaToMask: 0
     - _Blend: 0
     - _CastShadows: 1
     - _Cull: 2
     - _DstBlend: 0
+    - _DstBlendAlpha: 0
     - _Float: 0.48
     - _Float_1: 0.3
     - _Fre: -0.856
@@ -94,6 +98,7 @@ Material:
     - _ReceiveShadows: 1
     - _Smoothness: 0.155
     - _SrcBlend: 1
+    - _SrcBlendAlpha: 1
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZTest: 4
@@ -113,3 +118,4 @@ Material:
     - _Vector2_1: {r: 0.3, g: -0.15, b: 0, a: 0}
     - _Vector4: {r: 3, g: 3.51, b: -0.3, a: -0.23}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1

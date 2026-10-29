@@ -22,7 +22,7 @@ using PicoMRDemo.Runtime.Runtime.Theme;
 using PicoMRDemo.Runtime.Service;
 using PicoMRDemo.Runtime.UI;
 using PicoMRDemo.Runtime.Utils;
-using Unity.XR.PXR;
+using ByteDance.PICO.XR;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;

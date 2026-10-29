@@ -2,7 +2,7 @@ using System;
 using Cysharp.Threading.Tasks;
 using PicoMRDemo.Runtime.Data;
 using PicoMRDemo.Runtime.Data.Decoration;
-using Unity.XR.PXR;
+using ByteDance.PICO.XR;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;

@@ -8,7 +8,9 @@
 using System;
 using PicoMRDemo.Runtime.Pet;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
+
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 namespace PicoMRDemo.Runtime.Runtime.Item
 {
@@ -39,7 +41,7 @@ namespace PicoMRDemo.Runtime.Runtime.Item
             catchable.CatchObject = null;
             collider.enabled = true;
             var vel = owner.transform.TransformDirection(new Vector3(0f, 0f, 1f));
-            rig.velocity = vel;
+            rig.linearVelocity = vel;
         }
 
         public void SetCatchable(ICatchable catchable)

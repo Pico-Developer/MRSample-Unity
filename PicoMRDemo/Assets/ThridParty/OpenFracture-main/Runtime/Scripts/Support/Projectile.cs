@@ -20,7 +20,7 @@ public class Projectile : MonoBehaviour
             }
 
             var projectileInstance = GameObject.Instantiate(projectile, this.transform.position, Quaternion.identity);
-            projectileInstance.GetComponent<Rigidbody>().velocity = initialVelocity * this.transform.forward;
+            projectileInstance.GetComponent<Rigidbody>().linearVelocity = initialVelocity * this.transform.forward;
         }
     }
 }

@@ -109,3 +109,5 @@ Assets/BuildReports.meta
 Assets/ThridParty/Plugins/
 Assets/ThridParty/Plugins.meta
 ProjectSettings/MaintainerSettings.asset
+.trae/
+.pico-cli/

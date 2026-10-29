@@ -14,6 +14,8 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using VContainer;
 
 namespace PicoMRDemo.Runtime.UI
@@ -81,7 +83,7 @@ namespace PicoMRDemo.Runtime.UI
 
             if (shootingGame.Count > 0)
             {
-                bool isLeftController = ControllerManager.Instance.LeftControllerRoot == selectExitEventArgs.interactor.gameObject;
+                bool isLeftController = ControllerManager.Instance.LeftControllerRoot == selectExitEventArgs.interactorObject.transform.gameObject;
                 if (_shootingGameManager.IsStart||ControllerManager.Instance.GetControllerState(isLeftController) != ControllerState.Normal)
                 {
                     

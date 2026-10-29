@@ -13,6 +13,8 @@ using PicoMRDemo.Runtime.Service;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using VContainer;
 using Cysharp.Threading.Tasks;
 using UnityEngine.Serialization;
@@ -79,7 +81,7 @@ namespace PicoMRDemo.Runtime.UI
             }
             if (virtualWorld.Count > 0)
             {
-                bool isLeftController = selectExitEventArgs != null && ControllerManager.Instance.LeftControllerRoot == selectExitEventArgs.interactor.gameObject;
+                bool isLeftController = selectExitEventArgs != null && ControllerManager.Instance.LeftControllerRoot == selectExitEventArgs.interactorObject.transform.gameObject;
                 if (_virtualWorldManager.IsStart||ControllerManager.Instance.GetControllerState(isLeftController) != ControllerState.Normal)
                 {
                     

@@ -18,7 +18,7 @@ using PicoMRDemo.Runtime.Runtime.Item;
 using PicoMRDemo.Runtime.Runtime.Pet;
 using PicoMRDemo.Runtime.Runtime.PresetDecoration;
 using PicoMRDemo.Runtime.UI;
-using Unity.XR.PXR;
+using ByteDance.PICO.XR;
 using UnityEngine;
 using UnityEngine.Rendering;
 using VContainer;

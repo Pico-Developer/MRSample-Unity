@@ -67,7 +67,7 @@ namespace PicoMRDemo.Runtime.Runtime.ShootingGame
             var ballMaterial = new Material(Shader.Find("Universal Render Pipeline/Unlit"));
             ballMaterial.color = new Color(Random.Range(0f,1f), Random.Range(0f,1f), Random.Range(0f,1f));
             obj.GetComponent<Renderer>().material = ballMaterial;
-            obj.GetComponent<Rigidbody>().velocity = velocity;
+            obj.GetComponent<Rigidbody>().linearVelocity = velocity;
             var paintball = obj.GetComponent<PaintBall>();
             paintball.ballColor = ballMaterial.color;
             paintball.PaintBallGameManager = this;

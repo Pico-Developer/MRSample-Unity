@@ -7,7 +7,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.XR.PXR;
+using ByteDance.PICO.XR;
 using System;
 using System.IO;
 using System.Linq;

@@ -12,7 +12,7 @@ using Cysharp.Threading.Tasks;
 using PicoMRDemo.Runtime.Data;
 using PicoMRDemo.Runtime.Data.Anchor;
 using PicoMRDemo.Runtime.Entity;
-using Unity.XR.PXR;
+using ByteDance.PICO.XR;
 using UnityEngine;
 using PicoMRDemo.Runtime.Runtime.Item;
 using VContainer;

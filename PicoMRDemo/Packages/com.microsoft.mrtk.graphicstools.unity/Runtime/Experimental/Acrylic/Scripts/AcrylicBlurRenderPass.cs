@@ -16,8 +16,8 @@ namespace Microsoft.MixedReality.GraphicsTools
     {   
         public bool setMaterialTexture = false;
         private string profilerLabel;
-        private RenderTargetHandle target1;
-        private RenderTargetHandle target2;
+        private RTHandle target1;
+        private RTHandle target2;
         private int downSample;
         private int passes;
         private string textureName;
@@ -52,39 +52,48 @@ namespace Microsoft.MixedReality.GraphicsTools
         {
             int width = cameraTextureDescriptor.width / downSample;
             int height = cameraTextureDescriptor.height / downSample;
-            int slices = cameraTextureDescriptor.volumeDepth;
 
             pixelSize = new Vector2(1.0f / width, 1.0f / height);
 
-            info.x = (cameraTextureDescriptor.vrUsage == VRTextureUsage.TwoEyes) ? 1.0f : 0.5f;
-            info.y = slices > 1 ? 1.0f : 0.5f;
+            info.x = cameraTextureDescriptor.vrUsage == VRTextureUsage.TwoEyes ? 1.0f : 0.5f;
+            info.y = cameraTextureDescriptor.volumeDepth > 1 ? 1.0f : 0.5f;
             info.z = 1.0f;
             info.w = 1.0f;
 
-            ConfigureTempRenderTarget(ref target1, profilerLabel + "RenderTarget1", width, height, slices, cmd);
-            ConfigureTempRenderTarget(ref target2, profilerLabel + "RenderTarget2", width, height, slices, cmd);
+            var descriptor = cameraTextureDescriptor;
+            descriptor.width = width;
+            descriptor.height = height;
+            descriptor.depthBufferBits = 0;
+            descriptor.msaaSamples = 1;
+            descriptor.useMipMap = false;
+            descriptor.autoGenerateMips = false;
 
-            if (providedTexture!=null)
+            RenderingUtils.ReAllocateHandleIfNeeded(
+                ref target1,
+                descriptor,
+                FilterMode.Bilinear,
+                TextureWrapMode.Clamp,
+                name: profilerLabel + "RenderTarget1");
+            RenderingUtils.ReAllocateHandleIfNeeded(
+                ref target2,
+                descriptor,
+                FilterMode.Bilinear,
+                TextureWrapMode.Clamp,
+                name: profilerLabel + "RenderTarget2");
+            ConfigureTarget(target1);
+
+            if (providedTexture != null)
             {
-                if (providedTexture == null)
+                if (width != providedTexture.width || height != providedTexture.height)
                 {
-                    providedTexture = new RenderTexture(width, height, 0, RenderTextureFormat.ARGB32);
-                    providedTexture.filterMode = FilterMode.Bilinear;
+                    providedTexture.Release();
+                    providedTexture.width = width;
+                    providedTexture.height = height;
+                    providedTexture.Create();
                 }
-                else
-                {
-                    if (width != providedTexture.width || height != providedTexture.height)
-                    {
-                        providedTexture.Release();
-                        providedTexture.width = width;
-                        providedTexture.height = height;
-                        providedTexture.Create();
-                    }
-                }
+
                 if (setMaterialTexture)
-                {
                     cmd.SetGlobalTexture(textureName, providedTexture);
-                }
             }
         }
 
@@ -93,24 +102,26 @@ namespace Microsoft.MixedReality.GraphicsTools
             CommandBuffer cmd = CommandBufferPool.Get(profilerLabel);
             cmd.Clear();
 
-            var handle = providedTexture==null ? target1.Identifier() : providedTexture;
+            RenderTargetIdentifier handle = providedTexture == null
+                ? target1.nameID
+                : new RenderTargetIdentifier(providedTexture);
             var renderer = renderingData.cameraData.renderer;
 
             cmd.SetGlobalVector("_AcrylicInfo", info);
 
             if (downSample == 1)
             {
-                cmd.Blit(renderer.cameraColorTarget, handle);
+                cmd.Blit(renderer.cameraColorTargetHandle.nameID, handle);
             }
             else if (downSample == 2)
             {
                 cmd.SetGlobalVector("_AcrylicBlurOffset", Vector2.zero);
-                LocalBlit(cmd, renderer.cameraColorTarget, handle, blurMaterial);
+                LocalBlit(cmd, renderer.cameraColorTargetHandle.nameID, handle, blurMaterial);
             }
             else
             {
                 cmd.SetGlobalVector("_AcrylicBlurOffset", 0.25f * pixelSize);
-                LocalBlit(cmd, renderer.cameraColorTarget, handle, blurMaterial);
+                LocalBlit(cmd, renderer.cameraColorTargetHandle.nameID, handle, blurMaterial);
             }
 
             if (blur)
@@ -127,7 +138,7 @@ namespace Microsoft.MixedReality.GraphicsTools
 
             if (providedTexture==null && setMaterialTexture)
             {
-                cmd.SetGlobalTexture(textureName, target1.Identifier());
+                cmd.SetGlobalTexture(textureName, target1.nameID);
             }
 
             context.ExecuteCommandBuffer(cmd);
@@ -140,17 +151,17 @@ namespace Microsoft.MixedReality.GraphicsTools
             for (int i = 0; i < widths.Length; i++)
             {
                 cmd.SetGlobalVector("_AcrylicBlurOffset", (0.5f + widths[i]) * pixelSize);
-                if (providedTexture!=null && i == widths.Length - 1)
+                if (providedTexture != null && i == widths.Length - 1)
                 {
-                    LocalBlit(cmd, target1.Identifier(), providedTexture, blurMaterial);
+                    LocalBlit(cmd, target1.nameID, new RenderTargetIdentifier(providedTexture), blurMaterial);
                 }
-                else if (providedTexture!=null && i == 0)
+                else if (providedTexture != null && i == 0)
                 {
-                    LocalBlit(cmd, providedTexture, target1.Identifier(), blurMaterial);
+                    LocalBlit(cmd, new RenderTargetIdentifier(providedTexture), target1.nameID, blurMaterial);
                 }
                 else
                 {
-                    LocalBlit(cmd, target1.Identifier(), target2.Identifier(), blurMaterial);
+                    LocalBlit(cmd, target1.nameID, target2.nameID, blurMaterial);
                     SwapTempTargets();
                 }
             }
@@ -171,19 +182,12 @@ namespace Microsoft.MixedReality.GraphicsTools
             target2 = rttmp;
         }
 
-        private void ConfigureTempRenderTarget(ref RenderTargetHandle target, string id, int width, int height, int slices, CommandBuffer cmd)
+        public void Dispose()
         {
-            target.Init(id);
-            if (slices > 1)
-            {
-                cmd.GetTemporaryRTArray(target.id, width, height, slices, 0, FilterMode.Bilinear);
-            }
-            else
-            {
-                cmd.GetTemporaryRT(target.id, width, height, 0, FilterMode.Bilinear, RenderTextureFormat.ARGB32);
-            }
-
-            ConfigureTarget(target.Identifier());
+            target1?.Release();
+            target1 = null;
+            target2?.Release();
+            target2 = null;
         }
 
 

@@ -16,6 +16,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using VContainer;
 
 namespace PicoMRDemo.Runtime.UI
@@ -128,7 +130,7 @@ namespace PicoMRDemo.Runtime.UI
                 
                 button.GetComponent<XRSimpleInteractable>().lastSelectExited.AddListener((arg =>
                 {
-                    bool isLeftController = ControllerManager.Instance.LeftControllerRoot == arg.interactor.gameObject;
+                    bool isLeftController = ControllerManager.Instance.LeftControllerRoot == arg.interactorObject.transform.gameObject;
                     if (ControllerManager.Instance.GetControllerState(isLeftController) != ControllerState.Normal)
                     {
                         

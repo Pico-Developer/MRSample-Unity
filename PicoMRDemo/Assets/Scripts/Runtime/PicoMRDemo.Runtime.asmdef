@@ -2,7 +2,7 @@
     "name": "PicoMRDemo.Runtime",
     "rootNamespace": "PicoMRDemo.Runtime",
     "references": [
-        "Unity.XR.PICO",
+        "ByteDance.PICO.XR",
         "Unity.XR.Interaction.Toolkit",
         "Unity.TextMeshPro",
         "Unity.InputSystem",
@@ -15,7 +15,7 @@
         "behaviac.runtime",
         "AstarPathfindingProject",
         "Localization.Modules",
-        "PICO.Platform"
+        "ByteDance.PICO.Platform"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

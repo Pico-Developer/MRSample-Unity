@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using PicoMRDemo.Runtime.Data.Anchor;
-using Unity.XR.PXR;
+using ByteDance.PICO.XR;
 using UnityEngine;
 
 namespace PicoMRDemo.Runtime.Runtime.SDK

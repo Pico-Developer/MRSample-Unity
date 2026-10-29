@@ -11,10 +11,12 @@ using PicoMRDemo.Runtime.Entity;
 using PicoMRDemo.Runtime.Runtime.Item;
 using PicoMRDemo.Runtime.Service;
 using PicoMRDemo.Runtime.Runtime.ShootingGame;
-using Unity.XR.PXR;
+using ByteDance.PICO.XR;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using VContainer;
 
 namespace PicoMRDemo.Runtime.UI
@@ -111,7 +113,7 @@ namespace PicoMRDemo.Runtime.UI
         {
             Debug.Log("OnCreateAnchor");
 
-            bool isLeftController = ControllerManager.Instance.LeftControllerRoot == selectExitEventArgs.interactor.gameObject;
+            bool isLeftController = ControllerManager.Instance.LeftControllerRoot == selectExitEventArgs.interactorObject.transform.gameObject;
             if (_roomService.IsAnchorCreate()||ControllerManager.Instance.GetControllerState(isLeftController) != ControllerState.Normal)
             {
                 

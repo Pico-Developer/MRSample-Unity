@@ -10,11 +10,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
-using Pico.Platform;
-using Pico.Platform.Models;
+using ByteDance.PICO.Platform;
+using ByteDance.PICO.Platform.CLIB;
+using ByteDance.PICO.Platform.Framework;
+using ByteDance.PICO.Platform.Models;
+using ByteDance.PICO.Platform.Service;
 using PicoMRDemo.Runtime.UI;
 using UnityEngine.UI;
-using Unity.XR.PXR;
+using ByteDance.PICO.XR;
 using UnityEngine;
 
 public class PXR_SharedAnchorManager : MonoBehaviour

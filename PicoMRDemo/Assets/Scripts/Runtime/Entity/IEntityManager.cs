@@ -7,7 +7,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using Unity.XR.PXR;
+using ByteDance.PICO.XR;
 using UnityEngine;
 
 namespace PicoMRDemo.Runtime.Entity

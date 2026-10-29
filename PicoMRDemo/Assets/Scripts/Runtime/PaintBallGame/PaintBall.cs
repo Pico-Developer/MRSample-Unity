@@ -82,7 +82,7 @@ namespace PicoMRDemo.Runtime.Runtime.ShootingGame
             copiedMaterial.color = ballColor;
             particleeffect.GetComponent<Renderer>().sharedMaterial = copiedMaterial;
             PaintBallGameManager.AddPaintEffect(hitEffectPrefab);
-            RigidBody.velocity /= 2f;
+            RigidBody.linearVelocity /= 2f;
         }
 
         private void Update()

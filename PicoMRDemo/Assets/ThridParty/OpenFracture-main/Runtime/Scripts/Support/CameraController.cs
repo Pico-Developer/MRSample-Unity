@@ -66,11 +66,11 @@ public class CameraController : MonoBehaviour
         }
         
         // Clamp the player's velocity in the X and Z directions
-        Vector2 xzVelocity = new Vector2(rigidbody.velocity.x, rigidbody.velocity.z);
+        Vector2 xzVelocity = new Vector2(rigidbody.linearVelocity.x, rigidbody.linearVelocity.z);
         if (xzVelocity.magnitude > maxSpeed)
         {
             var xzClampedVelocity = maxSpeed * xzVelocity.normalized;
-            rigidbody.velocity = new Vector3(xzClampedVelocity.x, rigidbody.velocity.y, xzClampedVelocity.y);
+            rigidbody.linearVelocity = new Vector3(xzClampedVelocity.x, rigidbody.linearVelocity.y, xzClampedVelocity.y);
         }
     }
 }

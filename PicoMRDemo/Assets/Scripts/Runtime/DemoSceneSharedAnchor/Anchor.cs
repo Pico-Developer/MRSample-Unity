@@ -7,13 +7,15 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 using System;
 using System.Runtime.InteropServices;
-using Pico.Platform;
+using ByteDance.PICO.Platform;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Unity.XR.PXR;
+using ByteDance.PICO.XR;
 using UnityEngine.PlayerLoop;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 [RequireComponent(typeof(XRSimpleInteractable))]
 public class SharedAnchor : MonoBehaviour
